@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <div class="worker_box row">
+        <div class="col-4">
+          <div class="worker_image-box">
+            <% if @worker.image.present? %>
+              <%= @worker.image %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="worker_name-box">
+            <%= @worker.kana_fullname %><br>
+            <span class="font-30"><%= @worker.fullname %></span>
+          </div>
+          <div class="worker_info-box">
+            <div class="sex">
+              <p>性別：<%= @worker.sex_i18n %></p>
+            </div>
+            <div class="birthday">
+              <p>生年月日：<%= @worker.birthday.strftime("%Y年%m月%d日") %></p>
+            </div>
+            <div class="address">
+              <p>
+                〒<%= @worker.postal_code %><br>
+                <%= @worker.address %>
+              </p>
+            </div>
+            <div class="phone_number">
+              <p>電話番号：<%= @worker.phone_number %></p>
+            </div>
+            <div class="introduction">
+              <p>自己紹介文</p>
+              <%= @worker.introduction %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4"> 
+      <div class="worker_sidebar-box">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"></li>
+          <li class="list-group-item"></li>
+          <li class="list-group-item"><%= link_to "プロフィール編集", edit_worker_path(@worker) %></li>
+          <li class="list-group-item"><%= link_to "ログアウト", destroy_worker_session_path, method: :delete %></li>
+          <li class="list-group-item"><%= link_to "退会する", worker_path(@worker), method: :delete %></li>
+        </ul>  
+      </div>
+    </div>
+  </div>
+</div>
