@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <%= form_for @worker do |f| %>
+        <div class="field">
+          <%= f.label :last_name, "氏名" %>
+          <div class="row">
+            <div class="col">
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class:"form-control", placeholder: "苗字" %>
+            </div>
+            <div class="col">
+              <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class:"form-control", placeholder: "名前" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.label :kana_last_name, "カナ氏名" %>
+          <div class="row">
+            <div class="col">
+              <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name", class:"form-control", placeholder: "カナ苗字" %>
+            </div>
+            <div class="col">
+              <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name", class:"form-control", placeholder: "カナ名前" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.label :birthday, "生年月日" %><br />
+          <%= f.date_field :birthday, autofocus: true, autocomplete: "birthday", class:"form-control" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :phone_number, "電話番号（ハイフンなし）" %><br />
+          <%= f.number_field :phone_number, autofocus: true, autocomplete: "phone_number", class:"form-control" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :postal_code, "郵便番号（ハイフンなし）" %><br />
+          <%= f.number_field :postal_code, autofocus: true, autocomplete: "postal_code", class:"form-control", placeholder: "例:1610001" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :prefecture, "都道府県" %><br>
+          <%= f.select :prefecture, Worker.prefectures.keys, {prompt: '選択してください'}, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :city, "市区町村" %><br />
+          <%= f.text_field :city, autofocus: true, autocomplete: "city", class:"form-control", placeholder: "例:新宿区三丁目" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :street, "番地" %><br />
+          <%= f.text_field :street, autofocus: true, autocomplete: "street", class:"form-control", placeholder: "例:1-20" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :building, "マンション名等" %><br />
+          <%= f.text_field :building, autofocus: true, autocomplete: "building", class:"form-control", placeholder: "例:メゾン　３０２号室" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :introduction, "自己紹介文" %><br />
+          <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class:"form-control" %>
+        </div>
+
+        <div class="actions ma-t-50">
+          <%= f.submit "プロフィールを編集する" %>
+        </div>
+      <% end %>
+      <div class="back_link ma-y-30 right">
+        <%= link_to "戻る", worker_path(@worker) %>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="worker_edit-sidebar wid-70 ma-a">
+        <%= link_to "プロフィール画像変更", image_edit_worker_path(@worker), class:"btn btn-primary wid-100 ma-y-10" %>
+        <%= link_to "パスワード変更", edit_worker_registration_path, class:"btn btn-primary wid-100 ma-y-10" %>
+      </div>
+    </div>
+  </div>
+</div>

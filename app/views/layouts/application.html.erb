@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <% if current_worker %>
+      <%= current_worker.fullname %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
