@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 offset-3 center">
+      <div class="image-form">
+        <%= form_for @employer do |f| %>
+          <div class="employer_image-box ma-y-50">
+            <%= image_tag "store-no-image.png", size: "400x300" %>
+          </div>
+          <%= f.file_field :image %>
+
+          <div class="actions ma-t-50">
+            <%= f.submit "店紹介画像を変更する" %>
+          </div>
+        <% end %>
+        <div class="back_link ma-y-30 right">
+          <%= link_to "戻る", edit_employer_path(@employer) %>
+        </div>
+      </div>
+      <div class="image-form-introduction ma-t-50 left">
+        <h3 style="color:red">注意</h3>
+        <p>
+          登録された写真は、ワーカーの方が見ます。<br>
+          オファーを受けてくれるような魅力あふれる写真をトップにしましょう。
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

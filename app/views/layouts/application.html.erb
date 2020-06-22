@@ -12,6 +12,8 @@
   <body>
     <% if current_worker %>
       <%= current_worker.fullname %>
+    <% elsif current_employer %>
+      <%= current_employer.store_name %>
     <% end %>
     <%= yield %>
   </body>

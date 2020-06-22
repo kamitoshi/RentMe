@@ -1,10 +1,9 @@
-class Worker < ApplicationRecord
+class Employer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum sex:{men: 0, women: 1, others: 2}
   enum prefecture: {
     北海道:1,
     青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -18,30 +17,16 @@ class Worker < ApplicationRecord
     沖縄県:47
   }
 
-  has_many :suggests
-
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :kana_last_name, presence: true
-  validates :kana_first_name, presence: true
-  validates :sex, presence: true
+  validates :store_name, presence: true
+  validates :kana_store_name, presence: true
   validates :phone_number, presence: true
   validates :postal_code, presence: true
   validates :prefecture, presence: true
   validates :city, presence: true
   validates :street, presence: true
 
-
   def address
     self.prefecture + self.city + self.street + self.building
-  end
-
-  def fullname
-    self.last_name + "　" + self.first_name
-  end
-
-  def kana_fullname
-    self.kana_last_name + "　" + self.kana_first_name
   end
 
 end

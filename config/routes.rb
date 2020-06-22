@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'employers/index'
+  get 'employers/show'
+  get 'employers/edit'
   root 'home#top'
   get '/about', to: "home#about", as: "about"
   devise_for :workers, controllers:{
@@ -7,9 +10,26 @@ Rails.application.routes.draw do
     registrations: "workers/registrations"
   }
   devise_scope :worker do
-    get 'confirm_email', to: 'workers/registrations#confirm_email'
+    get 'workers/confirm_email', to: 'workers/registrations#confirm_email'
   end
   resources :workers, only:[:index, :show, :edit, :update, :destroy] do
+    member do
+      get :image_edit
+    end
+    collection do
+      get :delete
+    end
+  end
+
+  devise_for :employers, controllers:{
+    sessions: "employers/sessions",
+    passwords: "employers/passwords",
+    registrations: "employers/registrations"
+  }
+  devise_scope :employer do
+    get 'employers/confirm_email', to: 'employers/registrations#confirm_email'
+  end
+  resources :employers, only:[:index, :show, :edit, :update, :destroy] do
     member do
       get :image_edit
     end

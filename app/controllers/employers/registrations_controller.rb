@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Workers::RegistrationsController < Devise::RegistrationsController
+class Employers::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -39,14 +39,13 @@ class Workers::RegistrationsController < Devise::RegistrationsController
   # end
 
   def confirm_email
-
   end
 
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :kana_last_name, :kana_first_name, :sex, :birthday, :phone_number, :postal_code, :prefecture, :city, :street, :building, :introduction, :image])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:store_name, :kana_store_name, :phone_number, :postal_code, :prefecture, :city, :street, :building, :introduction, :image, :url])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -56,7 +55,7 @@ class Workers::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    worker_path(resource)
+    employer_path(resource)
   end
 
   # The path used after sign up for inactive accounts.
