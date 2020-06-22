@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'employers/index'
-  get 'employers/show'
-  get 'employers/edit'
   root 'home#top'
   get '/about', to: "home#about", as: "about"
   devise_for :workers, controllers:{
@@ -37,5 +34,7 @@ Rails.application.routes.draw do
       get :delete
     end
   end
+
+  resources :suggests
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

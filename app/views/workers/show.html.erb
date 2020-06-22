@@ -41,7 +41,8 @@
     <div class="col-4"> 
       <div class="worker_sidebar-box">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"></li>
+          <li class="list-group-item"><%= link_to "掲載情報一覧", suggests_path %></li>
+          <li class="list-group-item"><%= link_to "新規掲載する", new_suggest_path %></li>
           <li class="list-group-item"></li>
           <li class="list-group-item"><%= link_to "プロフィール編集", edit_worker_path(@worker) %></li>
           <li class="list-group-item"><%= link_to "ログアウト", destroy_worker_session_path, method: :delete %></li>
