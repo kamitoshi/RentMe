@@ -7,48 +7,13 @@
             <%= render "devise/shared/error_messages", resource: resource %>
             
             <div class="field">
-              <%= f.label :last_name, "氏名" %>
-              <div class="row">
-                <div class="col">
-                  <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class:"form-control", placeholder: "苗字" %>
-                </div>
-                <div class="col">
-                  <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class:"form-control", placeholder: "名前" %>
-                </div>
-              </div>
+              <%= f.label :store_name, "店名" %><br>
+              <%= f.text_field :store_name, autofocus: true, autocomplete: "store_name", class:"form-control", placeholder: "店名" %>
             </div>
 
             <div class="field">
-              <%= f.label :kana_last_name, "カナ氏名" %>
-              <div class="row">
-                <div class="col">
-                  <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "kana_last_name", class:"form-control", placeholder: "カナ苗字" %>
-                </div>
-                <div class="col">
-                  <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "kana_first_name", class:"form-control", placeholder: "カナ名前" %>
-                </div>
-              </div>
-            </div>
-
-            <div class="field">
-              <%= f.label :sex, "性別" %><span class="ma-l-20">※ 登録後の変更はできません</span><br />
-              <div class="radio_men dis-ib">
-                <%= f.radio_button :sex, :men %>
-                <%= f.label :sex, "男性", value: :men %>
-              </div>
-              <div class="radio_women dis-ib ma-l-20">
-                <%= f.radio_button :sex, :women %>
-                <%= f.label :sex, "女性", value: :women %>
-              </div>
-              <div class="radio_others dis-ib ma-l-20">
-                <%= f.radio_button :sex, :others %>
-                <%= f.label :sex, "その他", value: :others %>
-              </div>
-            </div>
-
-            <div class="field">
-              <%= f.label :birthday, "生年月日" %><br />
-              <%= f.date_field :birthday, autofocus: true, autocomplete: "birthday", class:"form-control" %>
+              <%= f.label :kana_last_name, "カナ店名" %><br>
+              <%= f.text_field :kana_store_name, autofocus: true, autocomplete: "kana_store_name", class:"form-control", placeholder: "カナ店名" %>
             </div>
 
             <div class="field">
@@ -82,18 +47,23 @@
             </div>
 
             <div class="field">
-              <%= f.label :building, "マンション名等" %><br />
+              <%= f.label :building, "建物名等" %><br />
               <%= f.text_field :building, autofocus: true, autocomplete: "building", class:"form-control", placeholder: "例:メゾン　３０２号室" %>
             </div>
 
             <div class="field">
-              <%= f.label :introduction, "自己紹介文" %><br />
+              <%= f.label :introduction, "店紹介文" %><br />
               <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction", class:"form-control" %>
             </div>
 
             <div class="field">
-              <%= f.label :image, "プロフィール画像" %><br />
+              <%= f.label :image, "店紹介画像" %><br />
               <%= f.file_field :image, autofocus: true, autocomplete: "image" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :url, "ホームページURL" %><br>
+              <%= f.text_field :url, autofocus: true, autocomplete: "url", class:"form-control" %>
             </div>
 
             <div class="field">
@@ -110,7 +80,7 @@
             </div>
 
             <div class="actions">
-              <%= f.submit "Worker登録" %>
+              <%= f.submit "Employer登録" %>
             </div>
           <% end %>
 

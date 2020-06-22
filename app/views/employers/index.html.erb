@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="employer_index-box">
+        <% if @employers.any? %>
+          <% @employers.each do |employer| %>
+            <div class="employer_index-item border">
+              <%= link_to employer_path(employer) do %>
+                <div class="store-name dis-ib">
+                  <span class="pa-l-20"><%= employer.kana_store_name %></span><br>
+                  <h3><%= employer.store_name %></h3>
+                </div>
+              <% end %>
+              <div class="address">
+                <%= employer.address %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <h2 class="center">該当の店舗は見つかりませんでした</h2>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

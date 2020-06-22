@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <div class="employer_box row">
+        <div class="col-4">
+          <div class="employer_image-box">
+            <% if @employer.image.present? %>
+              <%= @employer.image %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="employer_name-box">
+            <%= @employer.kana_store_name %><br>
+            <span class="font-30"><%= @employer.store_name %></span>
+          </div>
+          <div class="employer_info-box">
+            <div class="address">
+              <p>
+                〒<%= @employer.postal_code %><br>
+                <%= @employer.address %>
+              </p>
+            </div>
+            <div class="phone_number">
+              <p>電話番号：<%= @employer.phone_number %></p>
+            </div>
+            <div class="introduction">
+              <p>店紹介文</p>
+              <%= @employer.introduction %>
+            </div>
+            <% if @employer.url.present? %>
+              <div class="url">
+                <p>お店URL：<%= @employer.url %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4"> 
+      <div class="employer_sidebar-box">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"></li>
+          <li class="list-group-item"></li>
+          <li class="list-group-item"><%= link_to "プロフィール編集", edit_employer_path(@employer) %></li>
+          <li class="list-group-item"><%= link_to "ログアウト", destroy_employer_session_path, method: :delete %></li>
+          <li class="list-group-item"><%= link_to "退会する", employer_path(@employer), method: :delete %></li>
+        </ul>  
+      </div>
+    </div>
+  </div>
+</div>
