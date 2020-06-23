@@ -59,7 +59,7 @@ class SuggestsController < ApplicationController
 
   private
   def suggest_params
-    params.require(:suggest).permit(:title, :detail, :price, :target_date, :opening, :closing, :status)
+    params.require(:suggest).permit(:title, :detail, :price, :target_date, :opening, :closing, :status, {type_ids:[]})
   end
 
   def set_suggest

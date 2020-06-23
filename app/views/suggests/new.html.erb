@@ -8,6 +8,11 @@
         </div>
 
         <div class="field">
+          <%= f.label :types, "希望業務内容（複数選択可）" %><br>
+          <%= f.collection_check_boxes :type_ids, Type.all, :id, :name %>
+        </div>
+
+        <div class="field">
           <%= f.label :price, "単価" %><br />
           <div class="input-group">
             <div class="input-group-prepend">
