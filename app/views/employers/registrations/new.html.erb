@@ -12,8 +12,18 @@
             </div>
 
             <div class="field">
-              <%= f.label :kana_last_name, "カナ店名" %><br>
+              <%= f.label :kana_store_name, "カナ店名" %><br>
               <%= f.text_field :kana_store_name, autofocus: true, autocomplete: "kana_store_name", class:"form-control", placeholder: "カナ店名" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :manager_name, "責任者氏名" %><br>
+              <%= f.text_field :manager_name, autofocus: true, autocomplete: "manager_name", class:"form-control", placeholder: "店名" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :kana_manager_name, "カナ責任者氏名" %><br>
+              <%= f.text_field :kana_manager_name, autofocus: true, autocomplete: "kana_manager_name", class:"form-control", placeholder: "カナ店名" %>
             </div>
 
             <div class="field">

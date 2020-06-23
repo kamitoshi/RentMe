@@ -39,11 +39,20 @@
           <%= f.text_area :detail, autofocus: true, autocomplete: "detail", class:"form-control" %>
         </div>
 
+        <div class="field">
+          <div id="location-select">
+            <%= render partial: "locations/location_select", locals:{locations: current_worker.locations, f: f} %>
+          </div>
+        </div>  
+
         <div class="actions ma-t-50">
           <%= f.submit "掲載する" %>
         </div>
 
       <% end %>
+      <div id="location-input">
+        <%= render "locations/location_input" %>
+      </div>
     </div>
   </div>
 </div>

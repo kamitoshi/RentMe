@@ -1,0 +1,17 @@
+<%= form_for @location, remote: true do |f| %>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <%= f.select :prefecture, Location.prefectures.keys, {prompt: '勤務希望県選択してください'}, class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= f.text_field :city, autofocus: true, autocomplete: "city", class:"form-control", placeholder: "例：新宿区" %>
+    </div>
+    <div class="form-group col-md-5">
+      <%= f.text_field :place, autofocus: true, autocomplete: "place", class:"form-control", placeholder: "例：新宿駅周辺" %>
+    </div>
+  </div>
+
+  <div class="actions ma-t-50">
+    <%= f.submit "追加" %>
+  </div>
+<% end %>

@@ -1,0 +1,6 @@
+<% if locations.any? %>
+  <%= f.label :locations, "勤務希望地" %>
+  <%= f.collection_check_boxes :location_ids, current_worker.locations.all, :id, :place %>
+<% else %>
+  <p class="center">まだ希望地が登録されていません</p>
+<% end %>

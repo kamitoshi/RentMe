@@ -10,6 +10,7 @@ class SuggestsController < ApplicationController
 
   def new
     @suggest = Suggest.new
+    @location = Location.new
   end
 
   def create
@@ -59,7 +60,7 @@ class SuggestsController < ApplicationController
 
   private
   def suggest_params
-    params.require(:suggest).permit(:title, :detail, :price, :target_date, :opening, :closing, :status, {type_ids:[]})
+    params.require(:suggest).permit(:title, :detail, :price, :target_date, :opening, :closing, :status, {type_ids:[]}, {location_ids:[]})
   end
 
   def set_suggest

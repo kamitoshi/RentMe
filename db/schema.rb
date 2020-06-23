@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_105619) do
+ActiveRecord::Schema.define(version: 2020_06_23_024213) do
 
   create_table "employers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2020_06_22_105619) do
     t.datetime "locked_at"
     t.string "store_name", null: false
     t.string "kana_store_name", null: false
+    t.string "manager_name"
+    t.string "kana_manager_name"
     t.string "phone_number", null: false
     t.string "postal_code", null: false
     t.integer "prefecture", null: false
@@ -42,6 +44,16 @@ ActiveRecord::Schema.define(version: 2020_06_22_105619) do
     t.index ["email"], name: "index_employers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_employers_on_unlock_token", unique: true
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.integer "worker_id"
+    t.integer "prefecture"
+    t.string "city"
+    t.string "place"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["worker_id"], name: "index_locations_on_worker_id"
   end
 
   create_table "suggest_types", force: :cascade do |t|
