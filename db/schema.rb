@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_21_141110) do
+ActiveRecord::Schema.define(version: 2020_06_22_105619) do
 
   create_table "employers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -42,6 +42,39 @@ ActiveRecord::Schema.define(version: 2020_06_21_141110) do
     t.index ["email"], name: "index_employers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_employers_on_unlock_token", unique: true
+  end
+
+  create_table "suggest_types", force: :cascade do |t|
+    t.integer "suggest_id"
+    t.integer "type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["suggest_id"], name: "index_suggest_types_on_suggest_id"
+    t.index ["type_id"], name: "index_suggest_types_on_type_id"
+  end
+
+  create_table "suggests", force: :cascade do |t|
+    t.integer "worker_id"
+    t.string "title", null: false
+    t.text "detail", null: false
+    t.string "price", null: false
+    t.date "target_date", null: false
+    t.time "opening", null: false
+    t.time "closing", null: false
+    t.boolean "is_active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["closing"], name: "index_suggests_on_closing"
+    t.index ["opening"], name: "index_suggests_on_opening"
+    t.index ["target_date"], name: "index_suggests_on_target_date"
+    t.index ["title"], name: "index_suggests_on_title"
+    t.index ["worker_id"], name: "index_suggests_on_worker_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "workers", force: :cascade do |t|

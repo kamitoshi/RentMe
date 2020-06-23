@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="suggest_title">
+        <%= @suggest.title %>
+      </div>
+      <div class="suggest_worker">
+        <%= link_to @suggest.worker.fullname, worker_path(@suggest.worker) %>
+      </div>
+      <div class="suggest_info-box">
+        <div class="suggest_price">
+          <h3>時給　¥<%= @suggest.price %></h3>
+        </div>
+        <div class="suggest_time">
+          <%= @suggest.target_date.strftime("%Y年%m月%d日") %><br>
+          <%= @suggest.opening.strftime("%H:%M") %>〜<%= @suggest.closing.strftime("%H:%M") %>
+        </div>
+        <% if @suggest.types.any? %>
+          <div class="suggest_type">
+            <p>
+              希望勤務内容：
+              <% @suggest.types.each do |type| %>
+                <%= type.name %>
+              <% end %>
+            </p>
+          </div>
+        <% end %>
+        <div class="suggest_detail">
+          <p>掲載内容</p>
+          <%= @suggest.detail %>
+        </div>
+      </div>
+      <div class="contract-link wid-50 ma-a">
+        <%= link_to "採用オファーを出す", "#", class:"btn btn-success wid-100" %>
+      </div>
+      <div class="link-btn ma-t-50">
+        <%= link_to "一覧へ戻る", suggests_path, class:"btn btn-primary" %>
+        <%= link_to "編集する", edit_suggest_path(@suggest), class:"btn btn-primary" %>
+        <%= link_to "削除する", suggest_path(@suggest), method: :delete, data:{confirm:"本当に削除してよろしいですか？"}, class:"btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
