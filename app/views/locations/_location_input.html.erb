@@ -1,0 +1,17 @@
+<p class="pa-t-50">勤務希望地を新しく追加する</p>
+<%= form_for @location, url: locations_path,method: :post, remote: true do |f| %>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <%= f.select :prefecture, Location.prefectures.keys, {prompt: '勤務希望県選択してください'}, class: 'form-control' %>
+    </div>
+    <div class="form-group col-md-3">
+      <%= f.text_field :city, autocomplete: "city", class:"form-control", placeholder: "例：新宿区" %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= f.text_field :place, autocomplete: "place", class:"form-control", placeholder: "例：新宿駅周辺" %>
+    </div>
+    <div class="actions col-md-2 center">
+      <%= f.submit "追加", class:"btn btn-success wid-80" %>
+    </div>
+  </div>
+<% end %>

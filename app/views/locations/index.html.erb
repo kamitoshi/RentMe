@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div id="location_index">
+        <%= render "locations/location_index", locations: @locations %>
+      </div>
+      <div id="location_input">
+        <%= render "locations/location_input" %>
+      </div>
+      <div class="links">
+        <%= link_to "マイページに戻る", worker_path(current_worker), class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
