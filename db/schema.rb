@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_23_235506) do
+ActiveRecord::Schema.define(version: 2020_06_24_063800) do
 
   create_table "employers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2020_06_23_235506) do
     t.index ["email"], name: "index_employers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employers_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_employers_on_unlock_token", unique: true
+  end
+
+  create_table "holds", force: :cascade do |t|
+    t.integer "suggest_id"
+    t.integer "employer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employer_id"], name: "index_holds_on_employer_id"
+    t.index ["suggest_id", "employer_id"], name: "index_holds_on_suggest_id_and_employer_id", unique: true
+    t.index ["suggest_id"], name: "index_holds_on_suggest_id"
   end
 
   create_table "locations", force: :cascade do |t|

@@ -30,6 +30,11 @@
           <%= @suggest.detail %>
         </div>
       </div>
+      <% if employer_signed_in? %>
+        <div id="hold_toggle">
+          <%= render partial:"holds/hold_btn", locals:{suggest: @suggest, hold: @hold} %>
+        </div>
+      <% end %>
       <div class="contract-link wid-50 ma-a">
         <%= link_to "採用オファーを出す", "#", class:"btn btn-success wid-100" %>
       </div>
