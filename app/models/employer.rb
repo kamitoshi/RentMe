@@ -17,6 +17,10 @@ class Employer < ApplicationRecord
     沖縄県:47
   }
 
+  # Holdアソシエーション 
+  has_many :holds
+  has_many :hold_suggests, through: :holds, source: "suggest"
+
   validates :store_name, presence: true
   validates :kana_store_name, presence: true
   validates :phone_number, presence: true

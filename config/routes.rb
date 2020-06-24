@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'holds/index'
   root 'home#top'
   get '/about', to: "home#about", as: "about"
   devise_for :workers, controllers:{
@@ -35,7 +36,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :suggests
+  resources :suggests do
+    resources :holds, only:[:create, :destroy]
+  end
   resources :locations, only:[:index, :create, :destroy]
+  resources :holds, only:[:index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
