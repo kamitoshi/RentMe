@@ -1,4 +1,9 @@
 class LocationsController < ApplicationController
+
+  def index
+    @locations = current_worker.locations
+    @location = Location.new
+  end
   
   def create
     @location = current_worker.locations.build(location_params)
@@ -8,7 +13,9 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-
+    @location = Location.find(params[:id])
+    @location.destroy
+    render :remove_location 
   end
 
   private

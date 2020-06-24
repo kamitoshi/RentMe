@@ -40,8 +40,8 @@
         </div>
 
         <div class="field">
-          <div id="location-select">
-            <%= render partial: "locations/location_select", locals:{locations: current_worker.locations, f: f} %>
+          <div id="location_select">
+            <%= render partial: "suggests/location_select", locals:{locations: current_worker.locations, f: f} %>
           </div>
         </div>  
 
@@ -50,7 +50,7 @@
         </div>
 
       <% end %>
-      <div id="location-input">
+      <div id="location_input">
         <%= render "locations/location_input" %>
       </div>
     </div>

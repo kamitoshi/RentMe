@@ -1,0 +1,38 @@
+<% if locations.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th scope="col-4">都道府県</th>
+        <th scope="col-4">市区町村</th>
+        <th scope="col-4">場所</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% locations.each do |location| %>
+        <tr>
+          <th scope="row"></th>
+          <td><%= location.prefecture %></td>
+          <td><%= location.city %></td>
+          <td><%= location.place %></td>
+          <td><%= link_to "削除", location_path(location), method: :delete, remote: true, class:"btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th scope="col-4">都道府県</th>
+        <th scope="col-4">市区町村</th>
+        <th scope="col-4">場所</th>
+      </tr>
+    </thead>
+    <tbody>
+      <td colspan=4>まだ登録されていません</td>
+    </tbody>
+  </table>
+<% end %>

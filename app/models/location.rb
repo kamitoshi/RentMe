@@ -1,6 +1,9 @@
 class Location < ApplicationRecord
   belongs_to :worker
 
+  has_many :suggest_locations
+  has_many :suggests, through: :suggest_locations
+
   validates :prefecture, presence: true
   validates :city, presence: true
   validates :place, presence: true

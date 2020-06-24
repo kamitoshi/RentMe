@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_23_024213) do
+ActiveRecord::Schema.define(version: 2020_06_23_235506) do
 
   create_table "employers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 2020_06_23_024213) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["worker_id"], name: "index_locations_on_worker_id"
+  end
+
+  create_table "suggest_locations", force: :cascade do |t|
+    t.integer "suggest_id"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_suggest_locations_on_location_id"
+    t.index ["suggest_id"], name: "index_suggest_locations_on_suggest_id"
   end
 
   create_table "suggest_types", force: :cascade do |t|
