@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_063800) do
+ActiveRecord::Schema.define(version: 2020_06_25_020144) do
 
   create_table "employers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -64,6 +64,22 @@ ActiveRecord::Schema.define(version: 2020_06_24_063800) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["worker_id"], name: "index_locations_on_worker_id"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.integer "suggest_id"
+    t.integer "employer_id"
+    t.integer "price", null: false
+    t.time "opening", null: false
+    t.time "closing", null: false
+    t.text "content"
+    t.boolean "is_apply", default: true
+    t.boolean "is_approval"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employer_id"], name: "index_offers_on_employer_id"
+    t.index ["suggest_id", "employer_id"], name: "index_offers_on_suggest_id_and_employer_id", unique: true
+    t.index ["suggest_id"], name: "index_offers_on_suggest_id"
   end
 
   create_table "suggest_locations", force: :cascade do |t|

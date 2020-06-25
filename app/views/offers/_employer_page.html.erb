@@ -1,0 +1,28 @@
+<p class="center pa-50">下記内容でオファーしています</p>
+<div class="offer_info-box">
+  <div class="offer_price">
+    <h3>時給　¥<%= @offer.price %></h3>
+  </div>
+  <div class="offer_time">
+    <%= @offer.suggest.target_date.strftime("%Y年%m月%d日") %>　<%= weekday(@offer.suggest.target_date) %><br>
+    <%= @offer.opening.strftime("%H:%M") %>〜<%= @offer.closing.strftime("%H:%M") %>
+  </div>
+  
+  <div class="offer_content">
+    <p>掲載内容</p>
+    <%= @offer.content %>
+  </div>
+</div>
+
+<div class="offer_apply-btn wid-80 ma-a center">
+  <% if @offer.is_apply? %>
+    <%= link_to "オファーを取り下げる", apply_offer_path(@offer),method: :patch, class:"btn btn-danger" %>
+  <% else %>
+    <%= link_to "編集する", edit_offer_path(@offer.suggest), class:"btn btn-primary" %>
+    <%= link_to "削除する", offer_path(@offer), method: :delete, data:{confirm:"本当に削除してよろしいですか？"}, class:"btn btn-danger" %>
+  <% end %>
+</div>
+
+<div class="link-btn ma-t-50">
+  <%= link_to "マイページへ戻る", employer_path(current_employer), class:"btn btn-primary" %>
+</div>

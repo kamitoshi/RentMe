@@ -1,0 +1,46 @@
+<div class="modal fade" id="approvalModal" tabindex="-1" role="dialog" aria-labelledby="approvalModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="approvalModalLabel">オファーを承認しますか？</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          オファーを承認した段階で、<br>
+          基本的にキャンセルすることができません。<br>
+          よろしければ、『承認』ボタンを押してください。
+        </p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "承認", approval_offer_path(@offer, approval: 1),method: :patch, class:"btn btn-success" %>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="refusalModal" tabindex="-1" role="dialog" aria-labelledby="refusalModalLabel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="refusalModalLabel">オファーを拒否しますか？</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          拒否すると、このオファーへの再承認ができなくなります。<br>
+          本当に拒否してよろしいですか？
+        </p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "拒否", approval_offer_path(@offer, approval: 0),method: :patch, class:"btn btn-danger" %>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>

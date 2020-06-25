@@ -4,7 +4,7 @@ class CreateSuggests < ActiveRecord::Migration[5.2]
       t.references :worker, foreign_key: true
       t.string :title, null: false
       t.text :detail, null: false
-      t.string :price, null: false
+      t.integer :price, null: false
       t.date :target_date, null: false
       t.time :opening, null: false
       t.time :closing, null: false

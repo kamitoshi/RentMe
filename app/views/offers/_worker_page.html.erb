@@ -1,0 +1,30 @@
+<p class="center pa-50">下記の内容でオファーが来ています</p>
+<div class="offer_info-box">
+  <div class="offer_price">
+    <h3>時給　¥<%= @offer.price %></h3>
+  </div>
+  <div class="offer_time">
+    <%= @offer.suggest.target_date.strftime("%Y年%m月%d日") %>　<%= weekday(@offer.suggest.target_date) %><br>
+    <%= @offer.opening.strftime("%H:%M") %>〜<%= @offer.closing.strftime("%H:%M") %>
+  </div>
+  
+  <div class="offer_content">
+    <p>掲載内容</p>
+    <%= @offer.content %>
+  </div>
+</div>
+
+<div class="offer_approval-btn wid-80 ma-a center">
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#approvalModal">
+    承認
+  </button>
+  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#refusalModal">
+    拒否
+  </button>
+</div>
+
+<div class="link-btn ma-t-50">
+  <%= link_to "マイページに戻る", offers_path, class:"btn btn-success" %>
+</div>
+
+<%= render "offers/approval_modal" %>
