@@ -17,6 +17,8 @@ class Employer < ApplicationRecord
     沖縄県:47
   }
 
+  has_many :offers, dependent: :destroy
+
   # Holdアソシエーション 
   has_many :holds
   has_many :hold_suggests, through: :holds, source: "suggest"

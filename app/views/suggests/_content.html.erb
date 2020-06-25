@@ -1,0 +1,34 @@
+<div class="suggest_content-box">
+  <div class="suggest_title">
+    <h2 class="center"><%= suggest.title %></h2>
+  </div>
+  <div class="suggest_worker">
+    <span class="dis-b right pa-r-30"><%= suggest.worker.kana_fullname %></span>
+    <h4 class="right">氏名：<%= link_to suggest.worker.fullname, worker_path(suggest.worker) %></h4>
+  </div>
+  <div class="suggest_info-box">
+    <div class="suggest_desire">
+      <h4 class="pa-20">希望時給　　　¥<%= suggest.price %></h4>
+      <h4 class="pa-20">希望勤務日　　<%= suggest.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(suggest.target_date) %>）</h4>
+      <h4 class="pa-20">希望勤務時間　<%= suggest.opening.strftime("%H:%M") %>〜<%= suggest.closing.strftime("%H:%M") %></h4>
+      <% if suggest.locations.any? %>
+        <h4 class="pa-20">希望勤務地　　
+          <% suggest.locations.each do |location| %>
+            <span class="pa-r-30 font-18"><%= location.place %></span>
+          <% end %>
+        </h4>
+      <% end %>
+      <% if suggest.types.any? %>
+        <h4 class="pa-20">希望業務内容　
+          <% suggest.types.each do |type| %>
+            <span class="pa-r-30 font-18"><%= type.name %></span>
+          <% end %>
+        </h4>
+      <% end %>
+    </div>
+    <div class="suggest_desire-detail">
+      <h4 class="pa-20">内容</h4>
+      <p class="pa-x-30"><%= suggest.detail %></p>
+    </div>
+  </div>
+</div>

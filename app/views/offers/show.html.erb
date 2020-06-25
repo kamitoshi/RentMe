@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      
+      <%= render "suggests/content", suggest: @offer.suggest %>
+
+      <% if employer_signed_in? %>
+        <%= render "offers/employer_page" %>
+      <% elsif worker_signed_in? %>
+        <%= render "offers/worker_page" %>
+      <% end %>
+      
+    </div>
+  </div>
+</div>

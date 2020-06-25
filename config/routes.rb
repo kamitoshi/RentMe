@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'holds/index'
   root 'home#top'
   get '/about', to: "home#about", as: "about"
   devise_for :workers, controllers:{
@@ -38,8 +37,16 @@ Rails.application.routes.draw do
 
   resources :suggests do
     resources :holds, only:[:create, :destroy]
+    resources :offers, only:[:new, :create]
   end
   resources :locations, only:[:index, :create, :destroy]
   resources :holds, only:[:index]
+  resources :offers, except:[:new, :create] do
+    member do
+      get :confirm
+      patch :apply
+      patch :approval
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -15,3 +15,14 @@
  */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+textarea {
+  resize: none;
+}
+
+.field {
+  padding: 25px;
+  .label {
+    font-size: 24px;
+  }
+}

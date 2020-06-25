@@ -6,7 +6,9 @@ class SuggestsController < ApplicationController
   end
 
   def show
-    @hold = @suggest.holds.find_by(employer_id: current_employer.id)
+    if employer_signed_in?
+      @hold = @suggest.holds.find_by(employer_id: current_employer.id)
+    end
   end
 
   def new

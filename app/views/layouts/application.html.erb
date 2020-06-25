@@ -11,9 +11,9 @@
 
   <body>
     <% if current_worker %>
-      <%= current_worker.fullname %>
+      <%= link_to current_worker.fullname, worker_path(current_worker) %>
     <% elsif current_employer %>
-      <%= current_employer.store_name %>
+      <%= link_to current_employer.store_name, employer_path(current_employer) %>
     <% end %>
     <%= yield %>
   </body>
