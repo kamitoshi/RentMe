@@ -3,6 +3,7 @@ class CreateOffers < ActiveRecord::Migration[5.2]
     create_table :offers do |t|
       t.references :suggest, foreign_key: true
       t.references :employer, foreign_key: true
+      t.string :job_description, null: false
       t.integer :price, null: false
       t.time :opening, null: false
       t.time :closing, null: false

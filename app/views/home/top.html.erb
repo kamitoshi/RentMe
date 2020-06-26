@@ -1,2 +1,14 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="employer">
+        <%= link_to "Employerログイン", new_employer_session_path %>
+        <%= link_to "Employer新規登録", new_employer_registration_path %>
+      </div>
+      <div class="worker">
+        <%= link_to "Workerログイン", new_worker_session_path %>
+        <%= link_to "Worker新規登録", new_worker_registration_path %>
+      </div>
+    </div>
+  </div>
+</div>

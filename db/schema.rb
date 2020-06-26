@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_25_020144) do
+ActiveRecord::Schema.define(version: 2020_06_26_050628) do
+
+  create_table "contracts", force: :cascade do |t|
+    t.integer "worker_id"
+    t.integer "employer_id"
+    t.string "job_description", null: false
+    t.integer "price", null: false
+    t.date "target_date", null: false
+    t.time "opening", null: false
+    t.time "closing", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employer_id"], name: "index_contracts_on_employer_id"
+    t.index ["worker_id"], name: "index_contracts_on_worker_id"
+  end
 
   create_table "employers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -69,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_020144) do
   create_table "offers", force: :cascade do |t|
     t.integer "suggest_id"
     t.integer "employer_id"
+    t.string "job_description", null: false
     t.integer "price", null: false
     t.time "opening", null: false
     t.time "closing", null: false
@@ -104,7 +120,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_020144) do
     t.integer "worker_id"
     t.string "title", null: false
     t.text "detail", null: false
-    t.string "price", null: false
+    t.integer "price", null: false
     t.date "target_date", null: false
     t.time "opening", null: false
     t.time "closing", null: false

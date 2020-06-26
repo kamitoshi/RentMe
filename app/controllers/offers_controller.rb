@@ -1,6 +1,7 @@
 class OffersController < ApplicationController
 
   before_action :set_offer, only:[:show, :confirm, :edit, :update, :apply, :approval, :destroy]
+  before_action :job_description, only:[:update]
 
   def index
     
@@ -10,6 +11,7 @@ class OffersController < ApplicationController
   end
 
   def new
+    @suggest = Suggest.find(params[:suggest_id])
     @offer = Offer.new
   end
 
@@ -20,6 +22,7 @@ class OffersController < ApplicationController
   def create
     @offer = current_employer.offers.build(offer_params)
     @offer.suggest_id = params[:suggest_id]
+    @offer.job_description = params[:offer]["job_description"][0]
     if @offer.save
       flash[:success] = "オファーしました"
       redirect_to confirm_offer_path(@offer)
@@ -30,6 +33,7 @@ class OffersController < ApplicationController
   end
 
   def edit
+    @suggest = @offer.suggest
     unless @offer.employer == current_employer
       flash[:danger] = "他店舗のオファーは編集できません"
       redirect_to employer_path(current_employer)
@@ -43,6 +47,8 @@ class OffersController < ApplicationController
         redirect_to edit_offer_path(@offer)
       else
         if @offer.update(offer_params)
+          @offer.is_apply = 1
+          @offer.save
           flash[:success] = "オファー内容を編集しました"
           redirect_to offer_path(@offer)
         else
@@ -80,7 +86,7 @@ class OffersController < ApplicationController
       if params[:approval] == "1"
         @offer.update(is_approval: true)
         flash[:success] = "オファーを承認しました"
-        redirect_to offer_path(@offer)
+        redirect_to new_offer_contract_path(@offer)
       elsif params[:approval] == "0"
         @offer.update(is_approval: false)
         flash[:danger] = "オファーを拒否しました"
@@ -113,10 +119,16 @@ class OffersController < ApplicationController
 
   private
   def offer_params
-    params.require(:offer).permit(:suggest_id, :employer_id, :price, :opening, :closing, :content, :is_apply, :is_approval)
+    params.require(:offer).permit(:suggest_id, :employer_id, :price, :job_description, :opening, :closing, :content, :is_apply, :is_approval)
   end
 
   def set_offer
     @offer = Offer.find(params[:id])
+  end
+
+  def job_description
+    if params[:offer]["description"]
+      params[:offer]["description"] = params[:offer]["description"][0]
+    end
   end
 end

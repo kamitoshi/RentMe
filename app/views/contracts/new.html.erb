@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <div class="contract_title center pa-50">
+        <h3>（雇用？）契約</h3>
+      </div>
+      <%= form_for @contract, url: offer_contracts_path(@offer), method: :post do |f| %>
+        <div class="contract_confirm-box">
+          <h5 class="pa-20">委託者　　<%= @offer.employer.store_name %>（所在：<%= @offer.employer.address %>）</h5>
+          <h5 class="pa-20">受託者　　<%= @offer.suggest.worker.fullname %>（所在：<%= @offer.suggest.worker.address %>）</h5>
+          <h5 class="pa-20">時給　　　¥<%= @offer.price %></h5>
+          <%= f.hidden_field :price, value: @offer.price %>
+          <h5 class="pa-20">勤務日　　<%= @offer.suggest.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(@offer.suggest.target_date) %>）</h5>
+          <%= f.hidden_field :target_date, value: @offer.suggest.target_date %>
+          <h5 class="pa-20">勤務時間　<%= @offer.opening.strftime("%H:%M") %>〜<%= @offer.closing.strftime("%H:%M") %></h5>
+          <%= f.hidden_field :opening, value: @offer.opening %>
+          <%= f.hidden_field :closing, value: @offer.closing %>
+          <h5 class="pa-20">主な業務内容　<%= @offer.job_description %></h5>
+          <%= f.hidden_field :job_description, value: @offer.job_description %>
+        </div>
+
+        <div class="actions ma-t-50 center">
+          <input id="check" type="checkbox" class="pa-b-50">利用規約に同意する
+          <%= f.submit "内容を確認して、契約を確定する", class:"btn btn-success", disabled: true, id: "button" %>
+        </div>
+      <% end %>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#check").change(function () {
+  // チェックが入っていたら有効化
+  if ($(this).is(":checked")) {
+    // ボタンを有効化
+    $("#button").attr("disabled", false);
+  } else {
+    // ボタンを無効化
+    $("#button").attr("disabled", true);
+  }
+});
+</script>

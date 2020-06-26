@@ -47,6 +47,8 @@ Rails.application.routes.draw do
       patch :apply
       patch :approval
     end
+    resources :contracts, only:[:new, :create]
   end
+  resources :contracts, only:[:index, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

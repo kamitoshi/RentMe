@@ -18,6 +18,7 @@ class Employer < ApplicationRecord
   }
 
   has_many :offers, dependent: :destroy
+  has_many :contracts, dependent: :nullify
 
   # Holdアソシエーション 
   has_many :holds
