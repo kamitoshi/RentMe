@@ -18,8 +18,9 @@ class Worker < ApplicationRecord
     沖縄県:47
   }
 
-  has_many :suggests
-  has_many :locations
+  has_many :suggests, dependent: :destroy
+  has_many :locations, dependent: :destroy
+  has_many :contracts, dependent: :destroy
 
   validates :last_name, presence: true
   validates :first_name, presence: true
@@ -43,6 +44,10 @@ class Worker < ApplicationRecord
 
   def kana_fullname
     self.kana_last_name + "　" + self.kana_first_name
+  end
+
+  def age
+    (Date.today.strftime("%Y%m%d").to_i - self.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
 end

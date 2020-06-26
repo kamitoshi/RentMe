@@ -1,0 +1,34 @@
+<%= form_for @offer, url: path do |f| %>
+
+  <div class="field">
+    <%= f.label :price, "単価" %><br />
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputPrice">時給</label>
+      </div>
+      <%= f.number_field :price, autofocus: true, autocomplete: "price", class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="field selectbox">
+    <p class="label">希望業務内容</p>
+    <%= f.collection_check_boxes :job_description, @suggest.types, :name, :name, include_hidden: false %>
+  </div>
+
+  <div class="field">
+    <%= f.label :opening, "始業時間" %><br />
+    <%= f.time_field :opening, autofocus: true, autocomplete: "opening", class:"form-control" %>
+    <%= f.label :closing, "終業時間" %><br />
+    <%= f.time_field :closing, autofocus: true, autocomplete: "closing", class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content, "オファー内容" %><br />
+    <%= f.text_area :content, autofocus: true, autocomplete: "content", class:"form-control" %>
+  </div>
+
+  <div class="actions ma-t-50">
+    <%= f.submit "オファーする" %>
+  </div>
+
+<% end %>

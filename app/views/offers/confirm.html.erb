@@ -6,7 +6,7 @@
           <h3>時給　¥<%= @offer.price %></h3>
         </div>
         <div class="offer_time">
-          <%= @offer.suggest.target_date.strftime("%Y年%m月%d日") %>　<%= weekday(@offer.suggest.target_date) %><br>
+          <%= @offer.suggest.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(@offer.suggest.target_date) %>）<br>
           <%= @offer.opening.strftime("%H:%M") %>〜<%= @offer.closing.strftime("%H:%M") %>
         </div>
         <div class="offer_content">

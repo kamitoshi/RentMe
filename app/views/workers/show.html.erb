@@ -19,7 +19,7 @@
               <p>性別：<%= @worker.sex_i18n %></p>
             </div>
             <div class="birthday">
-              <p>生年月日：<%= @worker.birthday.strftime("%Y年%m月%d日") %></p>
+              <p>生年月日：<%= @worker.birthday.strftime("%Y年%m月%d日") %>（満<%= @worker.age %>歳）</p>
             </div>
             <div class="address">
               <p>
