@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection do
       get :delete
     end
+    resources :likes, only:[:create, :destroy]
   end
 
   devise_for :employers, controllers:{
@@ -50,5 +51,6 @@ Rails.application.routes.draw do
     resources :contracts, only:[:new, :create]
   end
   resources :contracts, only:[:index, :show]
+  resources :likes, only:[:index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
