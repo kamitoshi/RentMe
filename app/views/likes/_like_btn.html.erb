@@ -1,0 +1,5 @@
+<% if like.nil? %>
+  <%= link_to "お気に入りに追加する", worker_likes_path(worker), method: :post, remote: true, class:"btn btn-success" %>
+<% else %>
+  <%= link_to "お気に入りから外す", worker_like_path(worker, like), method: :delete, remote: true, class:"btn btn-danger" %>
+<% end %>

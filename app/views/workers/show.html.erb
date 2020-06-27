@@ -6,6 +6,8 @@
           <div class="worker_image-box">
             <% if @worker.image.present? %>
               <%= @worker.image %>
+            <% else %>
+              <%= image_tag "no_image.png", size: "200x250" %>
             <% end %>
           </div>
         </div>
@@ -36,6 +38,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div id="like_toggle">
+        <%= render partial:"likes/like_btn", locals:{worker: @worker, like: @like} %>
       </div>
     </div>
     <div class="col-4"> 

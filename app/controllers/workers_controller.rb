@@ -7,6 +7,9 @@ class WorkersController < ApplicationController
   end
 
   def show
+    if employer_signed_in?
+      @like = current_employer.likes.find_by(worker_id: @worker.id)
+    end
   end
 
   def edit

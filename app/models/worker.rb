@@ -22,6 +22,9 @@ class Worker < ApplicationRecord
   has_many :locations, dependent: :destroy
   has_many :contracts, dependent: :destroy
 
+  # Likeアソシエーション(現時点でワーカーからはlikeしない)
+  has_many :likes, dependent: :destroy
+
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :kana_last_name, presence: true

@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <% if @likes.any? %>
+        <% @likes.each do |like| %>
+          <div class="like_index-item border">
+            <h3><%= link_to like.worker.fullname, worker_path(like.worker) %></h3>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="center">お気に入りに追加しているワーカーはいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>
