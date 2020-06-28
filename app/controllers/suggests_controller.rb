@@ -1,8 +1,13 @@
 class SuggestsController < ApplicationController
+  before_action :only_worker!, only:[:new, :create, :edit, :update, :destroy]
   before_action :set_suggest, only:[:show, :edit, :update, :destroy]
 
   def index
-    @suggests = Suggest.all
+    if worker_signed_in?
+      @suggests = Suggest.where(worker_id: current_worker.id)
+    elsif employer_signed_in?
+      @suggests = Suggest.all
+    end
   end
 
   def show
@@ -20,7 +25,7 @@ class SuggestsController < ApplicationController
     @suggest = current_worker.suggests.build(suggest_params)
     if @suggest.save
       flash[:success] = "掲載しました"
-      redirect_to worker_path(current_worker)
+      redirect_to workers_path
     else
       flash.now[:alert] = "掲載できませんでした"
       render :new
@@ -28,7 +33,7 @@ class SuggestsController < ApplicationController
   end
 
   def edit
-    redirect_to worker_path(current_worker) unless current_worker == @suggest.worker
+    redirect_to workers_path unless current_worker == @suggest.worker
   end
 
   def update
@@ -42,7 +47,7 @@ class SuggestsController < ApplicationController
       end
     else
       flash[:alert] = "自分以外の掲載は編集できません"
-      redirect_to worker_path(current_worker)
+      redirect_to workers_path
     end
   end
 
@@ -50,14 +55,14 @@ class SuggestsController < ApplicationController
     if @suggest.worker == current_worker
       if @suggest.destroy
         flash[:success] = "掲載情報を削除しました"
-        redirect_to worker_path(current_worker)
+        redirect_to workers_path
       else
         flash[:alert] = "掲載情報を削除できませんでした"
-        redirect_to worker_path(current_worker)
+        redirect_to workers_path
       end
     else
       flash[:alert] = "自分以外の掲載情報は削除できません"
-      redirect_to worker_path(current_worker)
+      redirect_to workers_path
     end
   end
 
@@ -68,6 +73,12 @@ class SuggestsController < ApplicationController
 
   def set_suggest
     @suggest = Suggest.find(params[:id])
+  end
+
+  def only_worker!
+    unless worker_signed_in?
+      redirect_to employers_path
+    end
   end
 
 end

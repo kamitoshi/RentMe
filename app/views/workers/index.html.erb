@@ -1,2 +1,59 @@
-<h1>Workers#index</h1>
-<p>Find me in app/views/workers/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div class="worker_info-box">
+        <div class="worker_image-box center">
+          <% if current_worker.image.present? %>
+            <%= current_worker.image %>
+          <% else %>
+            <%= image_tag "no_image.png", size: "200x250" %>
+          <% end %>
+        </div>
+        <div class="worker_name-box center">
+          <%= current_worker.kana_fullname %><br>
+          <span class="font-30"><%= current_worker.fullname %></span>
+        </div>
+        <div class="worker_info-box">
+          <div class="sex">
+            <p>性別：<%= current_worker.sex_i18n %></p>
+          </div>
+          <div class="birthday">
+            <p>生年月日：<%= current_worker.birthday.strftime("%Y年%m月%d日") %>（満<%= current_worker.age %>歳）</p>
+          </div>
+          <div class="address">
+            <p>
+              〒<%= current_worker.postal_code %><br>
+              <%= current_worker.address %>
+            </p>
+          </div>
+          <div class="phone_number">
+            <p>電話番号：<%= current_worker.phone_number %></p>
+          </div>
+          <div class="introduction">
+            <p>自己紹介文</p>
+            <%= current_worker.introduction %>
+          </div>
+        </div>
+      </div>
+      <div class="worker_menu-box">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= link_to "掲載情報一覧", suggests_path %></li>
+          <li class="list-group-item"><%= link_to "新規掲載する", new_suggest_path %></li>
+          <li class="list-group-item"><%= link_to "登録希望勤務地一覧", locations_path %></li>
+          <li class="list-group-item"></li>
+          <li class="list-group-item"></li>
+          <li class="list-group-item"><%= link_to "プロフィール編集", edit_worker_path(current_worker) %></li>
+          <li class="list-group-item"><%= link_to "ログアウト", destroy_worker_session_path, method: :delete %></li>
+          <li class="list-group-item"><%= link_to "退会する", worker_path(current_worker), method: :delete %></li>
+        </ul>  
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="all_index-box">
+        <%= render "workers/suggests_index" %>
+        <%= render "workers/contracts_index" %>
+        <%= render "workers/reviews_index" %>
+      </div>
+    </div>
+  </div>
+</div>
