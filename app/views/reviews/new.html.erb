@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="review_title">
+        <h2 class="title">評価</h2>
+      </div>
+      <div class="review_title-content">
+        <p>
+          働いてくれたワーカーを評価しましょう。<br>
+          各項目10段階評価になっています。<br>
+          細かい評価やワーカーに伝えたいことがある場合は、記入してください。<br>
+          評価を送信すると契約が終了し、ワーカーに賃金が支払われます。<br>
+        </p>
+      </div>
+      <div id="like_toggle">
+        <%= render partial:"likes/like_btn", locals:{worker: @worker, like: @like} %>
+      </div>
+      <div class="review_form-box">
+        <%= form_for @review, url: contract_reviews_path(params[:contract_id]), method: :post do |f| %>
+          <%= f.hidden_field :worker_id, value: @contract.worker.id %>
+          <%= f.hidden_field :contract_id, value: @contract.id %>
+          <div class="form-group" id="service_star">
+            <%= f.label :service_rate, "接客" %><br>
+            <%= f.hidden_field :service_rate, id: :review_star %>
+          </div>
+
+          <div class="form-group" id="skill_star">
+            <%= f.label :skill_rate, "能力" %><br>
+            <%= f.hidden_field :skill_rate, id: :review_star %>
+          </div>
+
+          <div class="form-group" id="voice_star">
+            <%= f.label :voice_rate, "声の大きさ" %><br>
+            <%= f.hidden_field :voice_rate, id: :review_star %>
+          </div>
+
+          <div class="form-group" id="earnest_star">
+            <%= f.label :earnest_rate, "真面目さ" %><br>
+            <%= f.hidden_field :earnest_rate, id: :review_star %>
+          </div>
+
+          <div class="form-group" id="smile_star">
+            <%= f.label :smile_rate, "笑顔" %><br>
+            <%= f.hidden_field :smile_rate, id: :review_star %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :detail, "レビュー詳細" %><span>(任意)</span>
+            <%= f.text_area :detail, class: "form-control" %>
+          </div>
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+            レビューを送信する
+          </button>
+
+          <%= render "reviews/review_modal", f:f %>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $("#service_star").raty({
+    size: 36,
+    starOff: "<%= asset_path("star-off.png") %>",
+    starOn: "<%= asset_path("star-on.png") %>",
+    number: 10,
+    scoreName: "review[service_rate]",
+  });
+  $("#skill_star").raty({
+    size: 36,
+    starOff: "<%= asset_path("star-off.png") %>",
+    starOn: "<%= asset_path("star-on.png") %>",
+    number: 10,
+    scoreName: "review[skill_rate]",
+  });
+  $("#voice_star").raty({
+    size: 36,
+    starOff: "<%= asset_path("star-off.png") %>",
+    starOn: "<%= asset_path("star-on.png") %>",
+    number: 10,
+    scoreName: "review[voice_rate]",
+  });
+  $("#earnest_star").raty({
+    size: 36,
+    starOff: "<%= asset_path("star-off.png") %>",
+    starOn: "<%= asset_path("star-on.png") %>",
+    number: 10,
+    scoreName: "review[earnest_rate]",
+  });
+  $("#smile_star").raty({
+    size: 36,
+    starOff: "<%= asset_path("star-off.png") %>",
+    starOn: "<%= asset_path("star-on.png") %>",
+    number: 10,
+    scoreName: "review[smile_rate]",
+  });
+</script>

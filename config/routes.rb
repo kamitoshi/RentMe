@@ -50,7 +50,10 @@ Rails.application.routes.draw do
     end
     resources :contracts, only:[:new, :create]
   end
-  resources :contracts, only:[:index, :show]
+  resources :contracts, only:[:index, :show] do
+    resources :reviews, only:[:new, :create]
+  end
   resources :likes, only:[:index]
+  resources :reviews, only:[:index, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
