@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Workers::RegistrationsController < Devise::RegistrationsController
+  skip_before_action :login?
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 

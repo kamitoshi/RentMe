@@ -1,15 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
       <div class="worker_box row">
         <div class="col-4">
-          <div class="worker_image-box">
+          <div class="worker_image-box center">
             <% if @worker.image.present? %>
               <%= @worker.image %>
             <% else %>
               <%= image_tag "no_image.png", size: "200x250" %>
             <% end %>
           </div>
+          <% if worker_signed_in? %>
+            <div class="worker_image-edit wid-60 ma-a pa-t-30">
+              <%= link_to "プロフィール画像変更", image_edit_worker_path(@worker), class:"btn btn-primary wid-100" %>
+            </div>
+          <% end %>
         </div>
         <div class="col-8">
           <div class="worker_name-box">
@@ -18,7 +23,7 @@
           </div>
           <div class="worker_info-box">
             <div class="sex">
-              <p>性別：<%= @worker.sex_i18n %></p>
+              <p>性別：<%= @worker.sex_i18n %>（満<%= @worker.age %>歳）</p>
             </div>
             <div class="birthday">
               <p>生年月日：<%= @worker.birthday.strftime("%Y年%m月%d日") %>（満<%= @worker.age %>歳）</p>
@@ -40,23 +45,9 @@
         </div>
       </div>
     </div>
-    <div class="col-4"> 
-      <div class="worker_sidebar-box">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><%= link_to "掲載情報一覧", suggests_path %></li>
-          <li class="list-group-item"><%= link_to "新規掲載する", new_suggest_path %></li>
-          <li class="list-group-item"><%= link_to "登録希望勤務地一覧", locations_path %></li>
-          <li class="list-group-item"></li>
-          <li class="list-group-item"></li>
-          <li class="list-group-item"><%= link_to "プロフィール編集", edit_worker_path(@worker) %></li>
-          <li class="list-group-item"><%= link_to "ログアウト", destroy_worker_session_path, method: :delete %></li>
-          <li class="list-group-item"><%= link_to "退会する", worker_path(@worker), method: :delete %></li>
-        </ul>  
-      </div>
-    </div>
   </div>
   <div class="review_title">
-    <h3 class="title">評価</h3>
+    <h3 class="sub-title">評価</h3>
   </div>
   <% if @worker.reviews.any? %>
     <div class="review_content-box row">

@@ -1,0 +1,31 @@
+<div class="contract_index">
+  <h4 class="sub-title">レビュー待ちの案件</h4>
+  <div class="index-box border">
+    <% if @review_contracts.any? %>
+      <table class="table table-borderless table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th scope="col">勤務日</th>
+            <th scope="col">勤務時間</th>
+            <th scope="col">主な業務</th>
+            <th scope="col">勤務場所</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @review_contracts.each_with_index do |contract, index| %>
+            <tr class="position-relative">
+              <th scope="row"><%= link_to index + 1, contract_path(contract) %></th>
+              <td><%= contract.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(contract.target_date) %>）</td>
+              <td><%= contract.opening.strftime("%H:%M") %>〜<%= contract.closing.strftime("%H:%M") %></td>
+              <td><%= contract.job_description %></td>
+              <td><%= contract.employer.store_name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="center">レビュー待ちの案件はありません</p>
+    <% end %>
+  </div>
+</div>

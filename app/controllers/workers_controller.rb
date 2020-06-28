@@ -1,9 +1,12 @@
 class WorkersController < ApplicationController
-  #before_action :authenticate_worker!
+  before_action :only_worker!, only:[:index, :edit, :image_edit, :update, :destroy, :delete]
   before_action :set_worker, only:[:show, :edit, :image_edit, :update, :destroy]
 
   def index
-    @workers = Worker.all
+    @suggests = Suggest.where(worker_id: current_worker.id)
+    contracts = Contract.where(worker_id: current_worker.id)
+    @contracts = contracts.where(status: 0)
+    @review_contracts = contracts.where(status: 1)
   end
 
   def show
@@ -56,4 +59,11 @@ class WorkersController < ApplicationController
   def set_worker
     @worker = Worker.find(params[:id])
   end
+
+  def only_worker!
+    unless worker_signed_in?
+      redirect_to employers_path
+    end
+  end
+
 end

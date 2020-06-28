@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Employers::UnlocksController < Devise::UnlocksController
+  skip_before_action :login?
   # GET /resource/unlock/new
   # def new
   #   super

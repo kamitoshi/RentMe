@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Workers::ConfirmationsController < Devise::ConfirmationsController
+  skip_before_action :login?
   # GET /resource/confirmation/new
   # def new
   #   super

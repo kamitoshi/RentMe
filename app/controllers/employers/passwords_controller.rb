@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Employers::PasswordsController < Devise::PasswordsController
+  skip_before_action :login?
   # GET /resource/password/new
   # def new
   #   super

@@ -1,0 +1,43 @@
+<div class="suggest_index">
+  <h4 class="sub-title">掲載中の未契約案件</h4>
+  <div class="index-box border">
+    <% if @suggests.any? %>
+      <table class="table table-borderless table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th scope="col">希望日</th>
+            <th scope="col">希望時間</th>
+            <th scope="col">希望業務内容</th>
+            <th scope="col">希望勤務地</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @suggests.each_with_index do |suggest, index| %>
+            <tr class="position-relative">
+              <th scope="row"><%= link_to index + 1, suggest_path(suggest) %></th>
+              <td><%= suggest.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(suggest.target_date) %>）</td>
+              <td><%= suggest.opening.strftime("%H:%M") %>〜<%= suggest.closing.strftime("%H:%M") %></td>
+              <td>
+                <% if suggest.types.count == 1 %>
+                  <%= suggest.types[0].name %>
+                <% else %>
+                  <%= suggest.types[0].name %><span class="font-10 pa-l-10">ほか</span>
+                <% end %>
+              </td>
+              <td>
+                <% if suggest.locations.count == 1 %>
+                  <%= suggest.locations[0].place %>
+                <% else %>
+                  <%= suggest.locations[0].place %><span class="font-10 pa-l-10">ほか</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="center">掲載中の案件はありません</p>
+    <% end %>
+  </div>
+</div>
