@@ -72,6 +72,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # original
 gem 'bootstrap'
 gem 'jquery-rails'
+gem 'chart-js-rails'
 gem 'kaminari'
 gem 'ransack'
 gem 'rails-i18n'

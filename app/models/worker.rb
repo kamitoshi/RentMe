@@ -21,6 +21,7 @@ class Worker < ApplicationRecord
   has_many :suggests, dependent: :destroy
   has_many :locations, dependent: :destroy
   has_many :contracts, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   # Likeアソシエーション(現時点でワーカーからはlikeしない)
   has_many :likes, dependent: :destroy
@@ -51,6 +52,61 @@ class Worker < ApplicationRecord
 
   def age
     (Date.today.strftime("%Y%m%d").to_i - self.birthday.strftime("%Y%m%d").to_i) / 10000
+  end
+
+  # 評価の平均値を出すため
+  def service_rates
+    rates = []
+    self.reviews.each do |review|
+      rates.push(review.service_rate)
+    end
+    average(rates)
+  end
+
+  def skill_rates
+    rates = []
+    self.reviews.each do |review|
+      rates.push(review.skill_rate)
+    end
+    average(rates)
+  end
+
+  def voice_rates
+    rates = []
+    self.reviews.each do |review|
+      rates.push(review.voice_rate)
+    end
+    average(rates)
+  end
+
+  def earnest_rates
+    rates = []
+    self.reviews.each do |review|
+      rates.push(review.earnest_rate)
+    end
+    average(rates)
+  end
+
+  def smile_rates
+    rates = []
+    self.reviews.each do |review|
+      rates.push(review.smile_rate)
+    end
+    average(rates)
+  end
+
+  def total_rates
+    sum = service_rates + skill_rates + voice_rates + earnest_rates + smile_rates
+    return ave = sum.to_f / 5
+  end
+
+  # 評価の平均値を出す
+  def average(array)
+    sum = 0
+    array.each do |num|
+      sum += num
+    end
+    return ave = sum.to_f / array.length
   end
 
 end
