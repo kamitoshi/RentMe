@@ -1,24 +1,51 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <div class="employer_index-box">
-        <% if @employers.any? %>
-          <% @employers.each do |employer| %>
-            <div class="employer_index-item border">
-              <%= link_to employer_path(employer) do %>
-                <div class="store-name dis-ib">
-                  <span class="pa-l-20"><%= employer.kana_store_name %></span><br>
-                  <h3><%= employer.store_name %></h3>
-                </div>
-              <% end %>
-              <div class="address">
-                <%= employer.address %>
-              </div>
-            </div>
+    <div class="col-4">
+      <div class="employer_info-box">
+        <div class="employer_image-box center">
+          <% if current_employer.image.present? %>
+            <%= current_employer.image %>
+          <% else %>
+            <%= image_tag "store-no-image.png", size: "300x250" %>
           <% end %>
-        <% else %>
-          <h2 class="center">該当の店舗は見つかりませんでした</h2>
-        <% end %>
+        </div>
+        <div class="employer_name-box center">
+          <%= current_employer.kana_store_name %><br>
+          <span class="font-30"><%= current_employer.store_name %></span>
+        </div>
+        <div class="employer_info-box">
+          <div class="address">
+            <p>
+              〒<%= current_employer.postal_code %><br>
+              <%= current_employer.address %>
+            </p>
+          </div>
+          <div class="phone_number">
+            <p>電話番号：<%= current_employer.phone_number %></p>
+          </div>
+          <div class="introduction">
+            <p>店舗紹介文</p>
+            <%= current_employer.introduction %>
+          </div>
+        </div>
+      </div>
+      <div class="employer_menu-box">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= link_to "掲載案件一覧", suggests_path %></li>
+          <li class="list-group-item"><%= link_to "保留中案件一覧", holds_path %></li>
+          <li class="list-group-item"><%= link_to "お気に入りワーカー一覧", likes_path %></li>
+          <li class="list-group-item"></li>
+          <li class="list-group-item"><%= link_to "プロフィール編集", edit_employer_path(current_employer) %></li>
+          <li class="list-group-item"><%= link_to "ログアウト", destroy_employer_session_path, method: :delete %></li>
+          <li class="list-group-item"><%= link_to "退会する", employer_path(current_employer), method: :delete %></li>
+        </ul>  
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="all_index-box">
+        <%= render "employers/offers_index" %>
+        <%= render "employers/contracts_index" %>
+        <%= render "employers/reviews_index" %>
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@ class SuggestsController < ApplicationController
     if worker_signed_in?
       @suggests = Suggest.where(worker_id: current_worker.id)
     elsif employer_signed_in?
-      @suggests = Suggest.all
+      @suggests = Suggest.all.order(target_date: :desc)
     end
   end
 

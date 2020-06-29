@@ -1,9 +1,12 @@
 class EmployersController < ApplicationController
-  #before_action :authenticate_employer!
+  before_action :only_employer!, only:[:index, :edit, :image_edit, :update, :destroy, :delete]
   before_action :set_employer, only:[:show, :edit, :image_edit, :update, :destroy]
 
   def index
-    @employers = Employer.all
+    @offers = Offer.where(employer_id: current_employer.id, is_approval: nil)
+    contracts = Contract.where(employer_id: current_employer.id)
+    @contracts = contracts.where(status: 0)
+    @review_contracts = contracts.where(status: 1)
   end
 
   def show
@@ -56,4 +59,11 @@ class EmployersController < ApplicationController
   def set_employer
     @employer = Employer.find(params[:id])
   end
+
+  def only_employer!
+    unless employer_signed_in?
+      redirect_to root_path
+    end
+  end
+
 end

@@ -41,4 +41,13 @@ class Employer < ApplicationRecord
     self.prefecture + self.city + self.street + self.building
   end
 
+  def holds?(suggest)
+    hold = self.holds.find_by(suggest_id: suggest.id)
+    if hold
+      return true
+    else
+      return false
+    end
+  end
+
 end

@@ -1,17 +1,17 @@
 <div class="suggest_index">
   <h4 class="sub-title">掲載中の未契約案件</h4>
   <div class="index-box border">
-    <% if @suggests.any? %>
-      <table class="table table-borderless table-hover">
-        <thead>
-          <tr>
-            <th></th>
-            <th scope="col">希望日</th>
-            <th scope="col">希望時間</th>
-            <th scope="col">希望業務内容</th>
-            <th scope="col">希望勤務地</th>
-          </tr>
-        </thead>
+    <table class="table table-borderless table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th scope="col">希望日</th>
+          <th scope="col">希望時間</th>
+          <th scope="col">希望業務内容</th>
+          <th scope="col">希望勤務地</th>
+        </tr>
+      </thead>
+      <% if @suggests.any? %>
         <tbody>
           <% @suggests.each_with_index do |suggest, index| %>
             <tr class="position-relative">
@@ -35,9 +35,11 @@
             </tr>
           <% end %>
         </tbody>
-      </table>
-    <% else %>
-      <p class="center">掲載中の案件はありません</p>
-    <% end %>
+      <% else %>
+        <tbody>
+          <td colspan="5" class="center">掲載中の案件はありません</td>
+        </tbody>
+      <% end %>
+    </table>
   </div>
 </div>

@@ -1,14 +1,14 @@
-<div class="contract_index">
-  <h4 class="sub-title">レビュー待ちの案件</h4>
+<div class="review_index">
+  <h4 class="sub-title">レビュー未済の案件</h4>
   <div class="index-box border">
     <table class="table table-borderless table-hover">
       <thead>
         <tr>
           <th width="5%"></th>
           <th scope="col" width="30%">勤務日</th>
-          <th scope="col" width="18%">勤務時間</th>
-          <th scope="col" width="17%">主な業務</th>
-          <th scope="col" width="30%">勤務場所</th>
+          <th scope="col" width="25%">勤務時間</th>
+          <th scope="col" width="20%">時給</th>
+          <th scope="col" width="20%">主な業務</th>
         </tr>
       </thead>
       <% if @review_contracts.any? %>
@@ -18,14 +18,14 @@
               <th scope="row"><%= link_to index + 1, contract_path(contract) %></th>
               <td><%= contract.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(contract.target_date) %>）</td>
               <td><%= contract.opening.strftime("%H:%M") %>〜<%= contract.closing.strftime("%H:%M") %></td>
+              <td><%= contract.price.to_s(:delimited) %></td>
               <td><%= contract.job_description %></td>
-              <td><%= contract.employer.store_name %></td>
             </tr>
           <% end %>
         </tbody>
       <% else %>
         <tbody>
-          <td colspan="5" class="center">レビュー待ちの案件はありません</td>
+          <td colspan="5" class="center">レビュー未済の案件はありません</td>
         </tbody>
       <% end %>
     </table>

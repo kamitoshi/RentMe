@@ -1,7 +1,7 @@
 <%= form_for @suggest do |f| %>
   <div class="field">
     <%= f.label :title, "掲載タイトル", class:"label" %>
-    <%= f.text_field :title, autofocus: true, autocomplete: "title", class:"form-control" %>
+    <%= f.text_field :title, autofocus: true, autocomplete: "title", class:"form-control", placeholder: "例：ホールスタッフやりたいです" %>
   </div>
 
   <div class="field">
@@ -10,7 +10,7 @@
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputPrice">時給</label>
       </div>
-      <%= f.number_field :price, autofocus: true, autocomplete: "price", class:"form-control" %>
+      <%= f.number_field :price, autofocus: true, autocomplete: "price", class:"form-control", placeholder: "1500" %>
     </div>
   </div>
 
@@ -36,7 +36,7 @@
     <div id="location_select" class="selectbox">
       <% if current_worker.locations.any? %>
         <p class="label">勤務希望地（複数選択可）</p>
-        <%= f.collection_check_boxes :location_ids, current_worker.locations.all, :id, :place %>
+        <%= f.collection_check_boxes :location_ids, current_worker.locations.all, :id, :place, include_hidden: false %>
       <% else %>
         <p class="center">まだ希望地が登録されていません</p>
       <% end %>
@@ -45,16 +45,17 @@
 
   <div class="field selectbox">
     <p class="label">希望業務内容（複数選択可）</p>
-    <%= f.collection_check_boxes :type_ids, Type.all, :id, :name %>
+    <%= f.collection_check_boxes :type_ids, Type.all, :id, :name, include_hidden: false  %>
   </div>
 
   <div class="field">
     <p><%= f.label :detail, "詳細", class:"label" %>（上記以外の希望がある場合は、こちらに記入してください）</p>
-    <%= f.text_area :detail, autofocus: true, autocomplete: "detail", class:"form-control", style:"height:300px" %>
+    <% placeholder = "例：手荒れが最近ひどいので、洗い場など水場は厳しいです。できればホールのみでお願いしたいです。" %>
+    <%= f.text_area :detail, autofocus: true, autocomplete: "detail", class:"form-control", style:"height:300px", placeholder: placeholder %>
   </div>
 
-  <div class="actions pa-30 right">
-    <%= f.submit submit_title, class:"btn btn-primary" %>
+  <div class="actions wid-50 ma-a pa-y-30">
+    <%= f.submit submit_title, class:"btn btn-primary wid-100" %>
   </div>
 
 <% end %>

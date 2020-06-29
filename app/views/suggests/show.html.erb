@@ -1,20 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-8 offset-2">
-      <%= render "suggests/content", suggest: @suggest %>
       <% if employer_signed_in? %>
-        <div id="hold_toggle">
+        <div id="hold_toggle" class="right">
           <%= render partial:"holds/hold_btn", locals:{suggest: @suggest, hold: @hold} %>
         </div>
-        <div class="contract-link wid-50 ma-a">
-          <%= link_to "採用オファーを出す", new_suggest_offer_path(@suggest), class:"btn btn-success wid-100" %>
+      <% elsif %>
+        <div class="link_btn right">
+          <%= link_to "編集/削除", edit_suggest_path(@suggest), class:"btn btn-info" %>
         </div>
       <% end %>
-      <% if worker_signed_in? %>
-        <div class="link-btn ma-t-50">
-          <%= link_to "一覧へ戻る", suggests_path, class:"btn btn-primary" %>
-          <%= link_to "編集する", edit_suggest_path(@suggest), class:"btn btn-primary" %>
-          <%= link_to "削除する", suggest_path(@suggest), method: :delete, data:{confirm:"本当に削除してよろしいですか？"}, class:"btn btn-danger" %>
+      <%= render "suggests/content", suggest: @suggest %>
+      <% if employer_signed_in? %>
+        <div class="contract-link wid-70 ma-a">
+          <%= link_to "採用オファーを出す", new_suggest_offer_path(@suggest), class:"btn btn-success wid-100" %>
+        </div>
+      <% elsif worker_signed_in? %>
+        <div class="contract-link wid-70 ma-a">
+          <%= link_to "一覧へ戻る", suggests_path, class:"btn btn-primary wid-100" %>
         </div>
       <% end %>
     </div>

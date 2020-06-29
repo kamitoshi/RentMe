@@ -1,4 +1,6 @@
 class HoldsController < ApplicationController
+  before_action :only_employer!
+
   def index
     @suggests = current_employer.hold_suggests
   end
@@ -18,6 +20,13 @@ class HoldsController < ApplicationController
     @hold = nil
     flash.now[:danger] = "保留中の案件から削除しました。"
     render :toggle
+  end
+
+  private
+  def only_employer!
+    unless employer_signed_in?
+      redirect_to root_path
+    end
   end
 
 end
