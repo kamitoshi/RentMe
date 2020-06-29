@@ -1,15 +1,34 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <% if @likes.any? %>
-        <% @likes.each do |like| %>
-          <div class="like_index-item border">
-            <h3><%= link_to like.worker.fullname, worker_path(like.worker) %></h3>
-          </div>
+      <div class="like_index">
+        <% if @likes.any? %>
+          <% @likes.each do |like| %>
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <div class="worker_image-box center pa-y-20">
+                    <% if like.worker.image.present? %>
+                      <%= like.worker.image %>
+                    <% else %>
+                      <%= image_tag "no_image.png", size: "120x150" %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= link_to like.worker.fullname, worker_path(like.worker) %></h5>
+                    <p class="card-text">現在掲載中の案件が○件あります</p>
+                    <p class="card-text"><small class="text-muted">最終更新日</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p class="center">お気に入りに追加しているワーカーはいません</p>
         <% end %>
-      <% else %>
-        <p class="center">お気に入りに追加しているワーカーはいません</p>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
