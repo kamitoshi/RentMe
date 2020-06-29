@@ -1,0 +1,62 @@
+<div class="new_index">
+  <h4 class="sub-title">新着</h4>
+  <div class="index-box border pa-20">
+    <div class="new_offer-box scroll-box">
+      <table class="table table-borderless table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col" colspan="3">新着オファー</th>
+          </tr>
+          <tr>
+            <th scope="col" width="45%">勤務日時</th>
+            <th scope="col" width="35%">オファー店舗</th>
+            <th scope="col" width="20%">時給</th>
+          </tr>
+        </thead>
+        <% if @offers.any? %>
+          <tbody>
+            <% @offers.each do |offer| %>
+              <tr>
+                <td><%= offer.suggest.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(offer.suggest.target_date) %>）<%= offer.opening.strftime("%H:%M") %>〜<%= offer.closing.strftime("%H:%M") %></td>
+                <td><%= offer.employer.store_name %></td>
+                <td>¥<%= offer.price.to_s(:delimited) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% else %>
+          <tbody>
+            <td colspan="３" class="center">新着オファーはありません</td>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+    <hr>
+    <div class="new_review-box scroll-box">
+      <table class="table table-borderless table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col" colspan="2">新着レビュー</th>
+          </tr>
+          <tr>
+            <th scope="col" width="60%">勤務日時</th>
+            <th scope="col" width="40%">レビュー店舗</th>
+          </tr>
+        </thead>
+        <% if @reviews.any? %>
+          <tbody>
+            <% @reviews.each do |review| %>
+              <tr>
+                <td><%= review.contract.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(review.contract.target_date) %>）<%= review.contract.opening.strftime("%H:%M") %>〜<%= review.contract.closing.strftime("%H:%M") %></td>
+                <td><%= review.employer.store_name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% else %>
+          <tbody>
+            <td colspan="2" class="center">新着レビューはありません</td>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

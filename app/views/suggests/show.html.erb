@@ -12,9 +12,15 @@
       <% end %>
       <%= render "suggests/content", suggest: @suggest %>
       <% if employer_signed_in? %>
-        <div class="contract-link wid-70 ma-a">
-          <%= link_to "採用オファーを出す", new_suggest_offer_path(@suggest), class:"btn btn-success wid-100" %>
-        </div>
+        <% if @suggest.is_active? %>
+          <div class="contract-link wid-70 ma-a">
+            <%= link_to "採用オファーを出す", new_suggest_offer_path(@suggest), class:"btn btn-success wid-100" %>
+          </div>
+        <% else %>
+          <div class="contract-link wid-70 ma-a border">
+            <p class="center">この案件は契約済みです</p>
+          </div>
+        <% end %>
       <% elsif worker_signed_in? %>
         <div class="contract-link wid-70 ma-a">
           <%= link_to "一覧へ戻る", suggests_path, class:"btn btn-primary wid-100" %>

@@ -9,7 +9,7 @@
             <%= image_tag "no_image.png", size: "200x250" %>
           <% end %>
         </div>
-        <div class="worker_name-box center">
+        <div class="worker_name-box center pa-y-30">
           <%= current_worker.kana_fullname %><br>
           <span class="font-30"><%= current_worker.fullname %></span>
         </div>
@@ -27,7 +27,7 @@
             </p>
           </div>
           <div class="phone_number">
-            <p>電話番号：<%= current_worker.phone_number %></p>
+            <p>TEL：<%= current_worker.phone_number %></p>
           </div>
           <div class="introduction">
             <p>自己紹介文</p>
@@ -50,6 +50,7 @@
     </div>
     <div class="col-8">
       <div class="all_index-box">
+        <%= render "workers/new_index" %>
         <%= render "workers/suggests_index" %>
         <%= render "workers/contracts_index" %>
         <%= render "workers/reviews_index" %>

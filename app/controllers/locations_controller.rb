@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  before_action :only_worker!
 
   def index
     @locations = current_worker.locations
@@ -21,6 +22,13 @@ class LocationsController < ApplicationController
   private
   def location_params
     params.require(:location).permit(:prefecture, :city, :place)
+  end
+
+  private
+  def only_worker!
+    unless worker_signed_in?
+      redirect_to root_path
+    end
   end
 
 end

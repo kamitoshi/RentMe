@@ -38,4 +38,16 @@ class ContractsController < ApplicationController
   def contract_params
     params.require(:contract).permit(:worker_id, :employer_id, :price, :job_description, :target_date, :opening, :closing, :status)
   end
+
+  def only_worker!
+    unless worker_signed_in?
+      redirect_to root_path
+    end
+  end
+
+  def only_employer!
+    unless employer_signed_in?
+      redirect_to root_path
+    end
+  end
 end

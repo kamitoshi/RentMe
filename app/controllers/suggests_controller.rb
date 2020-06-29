@@ -6,7 +6,7 @@ class SuggestsController < ApplicationController
     if worker_signed_in?
       @suggests = Suggest.where(worker_id: current_worker.id)
     elsif employer_signed_in?
-      @suggests = Suggest.all.order(target_date: :desc)
+      @suggests = Suggest.all.order(target_date: :asc)
     end
   end
 
@@ -68,7 +68,7 @@ class SuggestsController < ApplicationController
 
   private
   def suggest_params
-    params.require(:suggest).permit(:title, :detail, :price, :target_date, :opening, :closing, :status, {type_ids:[]}, {location_ids:[]})
+    params.require(:suggest).permit(:title, :detail, :price, :target_date, :opening, :closing, :is_active, {type_ids:[]}, {location_ids:[]})
   end
 
   def set_suggest
@@ -77,7 +77,7 @@ class SuggestsController < ApplicationController
 
   def only_worker!
     unless worker_signed_in?
-      redirect_to employers_path
+      redirect_to root_path
     end
   end
 

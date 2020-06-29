@@ -9,19 +9,19 @@
             <%= image_tag "store-no-image.png", size: "300x250" %>
           <% end %>
         </div>
-        <div class="employer_name-box center">
+        <div class="address">
+          <p>
+            〒<%= current_employer.postal_code %><br>
+            <%= current_employer.address %>
+          </p>
+        </div>
+        <div class="employer_name-box pa-b-50">
           <%= current_employer.kana_store_name %><br>
           <span class="font-30"><%= current_employer.store_name %></span>
         </div>
         <div class="employer_info-box">
-          <div class="address">
-            <p>
-              〒<%= current_employer.postal_code %><br>
-              <%= current_employer.address %>
-            </p>
-          </div>
           <div class="phone_number">
-            <p>電話番号：<%= current_employer.phone_number %></p>
+            <p>TEL：<%= current_employer.phone_number %></p>
           </div>
           <div class="introduction">
             <p>店舗紹介文</p>

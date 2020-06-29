@@ -5,4 +5,16 @@ class Offer < ApplicationRecord
   validates :price, presence: true
   validates :opening, presence: true
   validates :closing, presence: true
+
+  def all_delete
+    offers = self.suggest.offers
+    offers.each do |o|
+      if o == self
+        skip
+      else
+        o.destroy
+      end
+    end
+  end
+
 end

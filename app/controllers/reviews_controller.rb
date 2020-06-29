@@ -41,4 +41,16 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:worker_id, :employer_id, :contract_id, :service_rate, :skill_rate, :voice_rate, :earnest_rate, :smile_rate, :detail)
   end
 
+  def only_worker!
+    unless worker_signed_in?
+      redirect_to root_path
+    end
+  end
+
+  def only_employer!
+    unless employer_signed_in?
+      redirect_to root_path
+    end
+  end
+
 end

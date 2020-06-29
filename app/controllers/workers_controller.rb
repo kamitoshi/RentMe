@@ -3,8 +3,23 @@ class WorkersController < ApplicationController
   before_action :set_worker, only:[:show, :edit, :image_edit, :update, :destroy]
 
   def index
-    @suggests = Suggest.where(worker_id: current_worker.id)
+    suggests = Suggest.where(worker_id: current_worker.id).order(target_date: :asc)
+    @suggests = suggests.where(is_active: true)
+    @offers = []
+    suggests.each do |suggest|
+      suggest.offers.each do |offer|
+        if offer.is_approval == nil
+          @offers.push(offer)
+        else
+          next
+        end
+      end
+    end
     contracts = Contract.where(worker_id: current_worker.id)
+    @reviews = []
+    contracts.each do |contract|
+      @reviews.push(contract.review)
+    end
     @contracts = contracts.where(status: 0)
     @review_contracts = contracts.where(status: 1)
   end
@@ -62,7 +77,7 @@ class WorkersController < ApplicationController
 
   def only_worker!
     unless worker_signed_in?
-      redirect_to employers_path
+      redirect_to root_path
     end
   end
 

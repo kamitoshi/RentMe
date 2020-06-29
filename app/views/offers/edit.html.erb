@@ -1,6 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-6 border-r">
+      <%= render "suggests/content", suggest: @suggest %>
+    </div>
+    <div class="col-6">
+      <p class="center pa-30">
+        左の案件に対して、下記内容にオファーを編集します
+      </p>
       <%= render "offers/form", path: offer_path(@offer) %>
     </div>
   </div>

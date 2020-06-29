@@ -10,10 +10,11 @@
   </head>
 
   <body>
+    <%= render "shared/flash_message" %>
     <% if current_worker %>
-      <%= link_to current_worker.fullname, worker_path(current_worker) %>
+      <%= link_to current_worker.fullname, workers_path %>
     <% elsif current_employer %>
-      <%= link_to current_employer.store_name, employer_path(current_employer) %>
+      <%= link_to current_employer.store_name, employers_path %>
     <% end %>
     <%= yield %>
   </body>
