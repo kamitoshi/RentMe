@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  before_action :only_employer!
 
   def index
     @likes = Like.where(employer_id: current_employer.id)
@@ -24,4 +25,12 @@ class LikesController < ApplicationController
       redirect_to employers_path
     end
   end
+
+  private
+  def only_employer!
+    unless employer_signed_in?
+      redirect_to root_path
+    end
+  end
+
 end

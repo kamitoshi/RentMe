@@ -1,15 +1,43 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 offset-2">
-      
+    <div class="col-6 border-r">
       <%= render "suggests/content", suggest: @offer.suggest %>
+    </div>
+    <div class="col-6">
+      <div class="offer_message">
+        <% if worker_signed_in? %>
+          <p class="center pa-30">この案件に対して、下記内容でオファーがきています</p>
+        <% elsif employer_signed_in? %>
+          <p class="center pa-30">この案件に対して、下記内容でオファーしています</p>
+        <% end %>
+      </div>
 
-      <% if employer_signed_in? %>
-        <%= render "offers/employer_page" %>
-      <% elsif worker_signed_in? %>
-        <%= render "offers/worker_page" %>
-      <% end %>
+      <%= render "offers/content", offer: @offer %>
       
+      <div class="offer_btn">
+        <% if worker_signed_in? %>
+          <div class="offer_approval-btn wid-80 ma-a center">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#approvalModal">承認</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#refusalModal">拒否</button>
+          </div>
+          <div class="link-btn ma-t-50">
+            <%= link_to "マイページに戻る", workers_path, class:"btn btn-primary" %>
+          </div>
+          <%= render "offers/approval_modal", offer: @offer %>
+        <% elsif employer_signed_in? %>
+          <div class="offer_apply-btn wid-80 ma-a center">
+            <% if @offer.is_apply? %>
+              <%= link_to "オファーを取り下げる", apply_offer_path(@offer),method: :patch, class:"btn btn-danger" %>
+            <% else %>
+              <%= link_to "編集する", edit_offer_path(@offer), class:"btn btn-primary" %>
+              <%= link_to "削除する", offer_path(@offer), method: :delete, data:{confirm:"本当に削除してよろしいですか？"}, class:"btn btn-danger" %>
+            <% end %>
+          </div>
+          <div class="link-btn ma-t-50">
+            <%= link_to "マイページへ戻る", employers_path, class:"btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

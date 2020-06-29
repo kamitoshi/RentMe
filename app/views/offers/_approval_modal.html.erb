@@ -16,7 +16,7 @@
         </p>
       </div>
       <div class="modal-footer">
-        <%= link_to "承認", approval_offer_path(@offer, approval: 1),method: :patch, class:"btn btn-success" %>
+        <%= link_to "承認", approval_offer_path(offer, approval: 1),method: :patch, class:"btn btn-success" %>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
       </div>
     </div>
@@ -39,7 +39,7 @@
         </p>
       </div>
       <div class="modal-footer">
-        <%= link_to "拒否", approval_offer_path(@offer, approval: 0),method: :patch, class:"btn btn-danger" %>
+        <%= link_to "拒否", approval_offer_path(offer, approval: 0),method: :patch, class:"btn btn-danger" %>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
       </div>
     </div>
