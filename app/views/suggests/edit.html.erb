@@ -2,6 +2,9 @@
   <div class="row">
     <div class="col-12">
       <%= render "suggests/form", submit_title: "編集する" %>
+      <div class="link-btn wid-50 ma-a">
+        <%= link_to "削除する", suggest_path(@suggest), method: :delete, data:{confirm:"本当に削除してよろしいですか？"}, class:"btn btn-danger wid-100" %>
+      </div>
     </div>
   </div>
 </div>

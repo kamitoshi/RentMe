@@ -1,5 +1,5 @@
 <% if hold.nil? %>
-  <%= link_to "保留に追加", suggest_holds_path(suggest), method: :post, remote: true, class:"btn btn-success" %>
+  <%= link_to "保留に追加", suggest_holds_path(suggest), method: :post, remote: true, class:"btn btn-warning" %>
 <% else %>
   <%= link_to "保留中", suggest_hold_path(suggest, hold), method: :delete, remote: true, class:"btn btn-danger" %>
 <% end %>

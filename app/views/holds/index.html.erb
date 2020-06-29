@@ -1,29 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <% if @suggests.any? %>
-        <% @suggests.each do |suggest| %>
-          <div class="suggest_index-item border">
-            <h3><%= link_to suggest.title, suggest_path(suggest) %></h3>
-            <% if suggest.types.any? %>
-              <div class="suggest_type">
-                <p>
-                  希望勤務内容：
-                  <% suggest.types.each do |type| %>
-                    <%= type.name %>
-                  <% end %>
-                </p>
-              </div>
-            <% end %>
-            <p class="right">
-              <span>掲載者　<%= link_to suggest.worker.fullname, worker_path(suggest.worker) %></span><br>
-              <span>掲載日<%= suggest.updated_at.strftime("%Y年%m月%d日") %></span>
-            </p>
-          </div>
-        <% end %>
-      <% else %>
-        <p class="center">保留している案件がありません</p>
-      <% end %>
+      <%= render "suggests/index", suggests: @suggests %>
     </div>
   </div>
 </div>
