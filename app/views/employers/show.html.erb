@@ -1,15 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col-8">
-      <div class="employer_box row">
-        <div class="col-4">
-          <div class="employer_image-box">
-            <% if @employer.image.present? %>
-              <%= @employer.image %>
-            <% end %>
-          </div>
+    <div class="col-8 offset-2">
+      <div class="employer_box">
+        <div class="employer_image-box center">
+          <% if @employer.image.present? %>
+            <%= @employer.image %>
+          <% else %>
+            <%= image_tag "store-no-image.png", size:"600x400" %>
+          <% end %>
         </div>
-        <div class="col-8">
+        <% if employer_signed_in? %>
+          <div class="employer_image-edit right">
+            <%= link_to "店舗画像変更", image_edit_employer_path(@employer) %>
+          </div>
+        <% end %>
+        <div class="employer_info-box">
           <div class="employer_name-box">
             <%= @employer.kana_store_name %><br>
             <span class="font-30"><%= @employer.store_name %></span>
@@ -35,19 +40,6 @@
             <% end %>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="col-4"> 
-      <div class="employer_sidebar-box">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><%= link_to "掲載案件一覧", suggests_path %></li>
-          <li class="list-group-item"><%= link_to "保留中案件一覧", holds_path %></li>
-          <li class="list-group-item"><%= link_to "お気に入りワーカー一覧", likes_path %></li>
-          <li class="list-group-item"></li>
-          <li class="list-group-item"><%= link_to "プロフィール編集", edit_employer_path(@employer) %></li>
-          <li class="list-group-item"><%= link_to "ログアウト", destroy_employer_session_path, method: :delete %></li>
-          <li class="list-group-item"><%= link_to "退会する", employer_path(@employer), method: :delete %></li>
-        </ul>  
       </div>
     </div>
   </div>

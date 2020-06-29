@@ -1,0 +1,32 @@
+<div class="offer_index">
+  <h4 class="sub-title">オファー中の案件</h4>
+  <div class="index-box border">
+    <table class="table table-borderless table-hover">
+      <thead>
+        <tr>
+          <th width="5%"></th>
+          <th scope="col" width="30%">勤務日</th>
+          <th scope="col" width="25%">勤務時間</th>
+          <th scope="col" width="20%">時給</th>
+          <th scope="col" width="20%">主な業務</th>
+        </tr>
+      </thead>
+      <% if @offers.any? %>
+        <tbody>
+          <% @offers.each_with_index do |offer, index| %>
+            <tr class="position-relative">
+              <th scope="row"><%= link_to index + 1, offer_path(offer) %></th>
+              <td><%= offer.suggest.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(offer.suggest.target_date) %>）</td>
+              <td><%= offer.opening.strftime("%H:%M") %>〜<%= offer.closing.strftime("%H:%M") %></td>
+              <td>¥<%= offer.price.to_s(:delimited) %></td>
+              <td><%= offer.job_description %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% else %>
+        <tbody>
+          <td colspan="5" class="center">オファー中の案件はありません</td>
+        <% end %>
+    </table>
+  </div>
+</div>
