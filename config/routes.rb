@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     end
     resources :contracts, only:[:new, :create]
   end
-  resources :contracts, only:[:index, :show] do
+  resources :contracts, only:[:index, :show, :update] do
     resources :reviews, only:[:new, :create]
   end
   resources :likes, only:[:index]

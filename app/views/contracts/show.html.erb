@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-10 offset-1">
       <div class="contract_title center pa-50">
-        <h3>（雇用？）契約</h3>
+        <h3>契約内容</h3>
       </div>
       <div class="contract_confirm-box">
         <h5 class="pa-20">委託者　　<%= @contract.employer.store_name %>（所在：<%= @contract.employer.address %>）</h5>
@@ -12,7 +12,19 @@
         <h5 class="pa-20">勤務時間　<%= @contract.opening.strftime("%H:%M") %>〜<%= @contract.closing.strftime("%H:%M") %></h5>
         <h5 class="pa-20">主な業務内容　<%= @contract.job_description %></h5>
       </div>
-      
+      <% if worker_signed_in? %>
+        <% if current_worker == @contract.worker && @contract.status == "契約中" %>
+          <%= form_for @contract do |f| %>
+            <%= f.hidden_field :status, value: "レビュー待ち" %>
+            <%= f.submit "勤務終了報告" %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% if employer_signed_in? %>
+        <% if current_employer == @contract.employer && @contract.status == "レビュー待ち" %>
+          <%= link_to "レビューする", new_contract_review_path(@contract), class:"btn btn-primary" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

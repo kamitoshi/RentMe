@@ -9,7 +9,7 @@ class LikesController < ApplicationController
     @worker = Worker.find(params[:worker_id])
     @like = current_employer.likes.build(worker_id: @worker.id)
     if @like.save
-      render :toggle
+      render :add_like
     else
       redirect_to employers_path
     end
@@ -20,7 +20,7 @@ class LikesController < ApplicationController
     @like = Like.find(params[:id])
     if @like.destroy
       @like = nil
-      render :toggle
+      render :remove_like
     else
       redirect_to employers_path
     end

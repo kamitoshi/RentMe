@@ -1,4 +1,6 @@
 class ContractsController < ApplicationController
+  before_action :only_worker!, only:[:new, :create]
+
   def index
     if worker_signed_in?
       @contracts = Contract.where(worker_id: current_worker.id)
@@ -32,6 +34,12 @@ class ContractsController < ApplicationController
       flash[:danger] = "自分宛にきたオファー以外は契約できません"
       redirect_to worker_path(current_worker)
     end
+  end
+
+  def update
+    @contract = Contract.find(params[:id])
+    @contract.update(contract_params)
+    redirect_to workers_path
   end
 
   private

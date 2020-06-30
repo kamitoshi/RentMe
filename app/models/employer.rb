@@ -50,4 +50,14 @@ class Employer < ApplicationRecord
     end
   end
 
+  # 既に引数のワーカーをお気に入り登録しているかを判別
+  def liked?(worker)
+    self.likes.find_by(worker_id: worker.id)
+  end
+
+  # 既に引数のSuggestに対してオファーしているか判別
+  def offered?(suggest)
+    self.offers.find_by(suggest_id: suggest.id)
+  end
+
 end

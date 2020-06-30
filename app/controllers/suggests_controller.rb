@@ -17,8 +17,13 @@ class SuggestsController < ApplicationController
   end
 
   def new
-    @suggest = Suggest.new
-    @location = Location.new
+    if current_worker.locations.any?
+      @suggest = Suggest.new
+      @location = Location.new
+    else
+      flash[:danger] = "希望勤務地を先に追加してください"
+      redirect_to locations_path
+    end
   end
 
   def create

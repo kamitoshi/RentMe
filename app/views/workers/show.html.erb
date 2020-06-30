@@ -87,7 +87,40 @@
     </div>
   <% else %>
     <div class="review_content-box row">
-      <p class="center">まだ評価されていません</p>
+      <div class="col-3 pa-t-50">
+        <p class="center">まだ評価されていません</p>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row">総合評価</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th scope="row">接客</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th scope="row">スキル</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th scope="row">声の大きさ</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th scope="row">真面目さ</th>
+              <td>-</td>
+            </tr>
+            <tr>
+              <th scope="row">笑顔</th>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-9">
+        <canvas id="myChart"></canvas>
+      </div>
     </div>
   <% end %>
 </div>
