@@ -4,8 +4,10 @@
       <div class="suggest_index-item ma-20 border pa-10">
         <div class="suggest_index-title">
           <h4 class="dis-ib"><%= link_to suggest.title, suggest_path(suggest) %></h4>
-          <% if current_employer.holds?(suggest) %>
-            <span class="font-10 hold_badge">保留中</span>
+          <% if employer_signed_in? %>
+            <% if current_employer.holds?(suggest) %>
+              <span class="font-10 hold_badge">保留中</span>
+            <% end %>
           <% end %>
         </div>
         <div class="suggest_type">

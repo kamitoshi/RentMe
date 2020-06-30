@@ -29,7 +29,11 @@
   </div>
 
   <div class="actions wid-50 ma-a pa-y-30">
-    <%= f.submit "オファーする", class:"btn btn-primary wid-100" %>
+    <% if current_employer.offered?(@suggest) %>
+      <%= link_to "既にオファーしています", offer_path(current_employer.offered?(@suggest)), class:"btn btn-secondary wid-100" %>
+    <% else %>
+      <%= f.submit "オファーする", class:"btn btn-primary wid-100" %>
+    <% end %>
   </div>
 
 <% end %>

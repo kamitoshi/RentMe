@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
     @contract = Contract.find(params[:contract_id])
     @review = current_employer.reviews.build(review_params)
     if @review.save
-      @contract.update(status: 2) 
+      @contract.update(status: "契約終了") 
       flash[:success] = "レビューしました"
       redirect_to employers_path
     else

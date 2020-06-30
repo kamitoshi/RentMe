@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-10 offset-1">
       <div class="contract_title center pa-50">
-        <h3>（雇用？）契約</h3>
+        <h3>契約内容</h3>
       </div>
       <%= form_for @contract, url: offer_contracts_path(@offer), method: :post do |f| %>
         <div class="contract_confirm-box">
@@ -31,13 +31,13 @@
 
 <script>
   $("#check").change(function () {
-  // チェックが入っていたら有効化
-  if ($(this).is(":checked")) {
-    // ボタンを有効化
-    $("#button").attr("disabled", false);
-  } else {
-    // ボタンを無効化
-    $("#button").attr("disabled", true);
-  }
-});
+    // チェックが入っていたら有効化
+    if ($(this).is(":checked")) {
+      // ボタンを有効化
+      $("#button").attr("disabled", false);
+    } else {
+      // ボタンを無効化
+      $("#button").attr("disabled", true);
+    }
+  });
 </script>
