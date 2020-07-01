@@ -52,12 +52,11 @@
   <% if @worker.reviews.any? %>
     <div class="review_content-box row">
       <div class="col-3 pa-t-75">
+        <div class="total_review">
+          <h5 class="pa-30">総合評価<span class="pa-l-70"><%= @worker.total_rates %></span></h5>
+        </div>
         <table class="table">
           <tbody>
-            <tr>
-              <th scope="row">総合評価</th>
-              <td><%= @worker.total_rates %></td>
-            </tr>
             <tr>
               <th scope="row">接客</th>
               <td><%= @worker.service_rates %></td>
@@ -80,6 +79,9 @@
             </tr>
           </tbody>
         </table>
+        <div class="link_btn center">
+          <%= link_to "レビュー一覧を見る", reviews_path(worker_id: @worker.id), class:"link-btn border" %>
+        </div>
       </div>
       <div class="col-9">
         <canvas id="myChart"></canvas>
@@ -91,10 +93,6 @@
         <p class="center">まだ評価されていません</p>
         <table class="table">
           <tbody>
-            <tr>
-              <th scope="row">総合評価</th>
-              <td>-</td>
-            </tr>
             <tr>
               <th scope="row">接客</th>
               <td>-</td>

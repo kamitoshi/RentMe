@@ -1,11 +1,15 @@
 class ReviewsController < ApplicationController
+  before_action :only_employer!, only:[:new, :create]
 
   def index
     if worker_signed_in?
       @reviews = Review.where(worker_id: current_worker.id)
     elsif employer_signed_in?
       if params[:worker_id].present?
-        @reviews = Review.where(worker_id: params[:worker_id])
+        @worker = Worker.find(params[:worker_id])
+        @reviews = Review.where(worker_id: @worker.id)
+      else
+        redirect_to root_path
       end
     end
   end

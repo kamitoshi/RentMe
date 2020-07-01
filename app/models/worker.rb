@@ -60,7 +60,7 @@ class Worker < ApplicationRecord
     self.reviews.each do |review|
       rates.push(review.service_rate)
     end
-    average(rates)
+    average(rates).round(1)
   end
 
   def skill_rates
@@ -68,7 +68,7 @@ class Worker < ApplicationRecord
     self.reviews.each do |review|
       rates.push(review.skill_rate)
     end
-    average(rates)
+    average(rates).round(1)
   end
 
   def voice_rates
@@ -76,7 +76,7 @@ class Worker < ApplicationRecord
     self.reviews.each do |review|
       rates.push(review.voice_rate)
     end
-    average(rates)
+    average(rates).round(1)
   end
 
   def earnest_rates
@@ -84,7 +84,7 @@ class Worker < ApplicationRecord
     self.reviews.each do |review|
       rates.push(review.earnest_rate)
     end
-    average(rates)
+    average(rates).round(1)
   end
 
   def smile_rates
@@ -92,12 +92,13 @@ class Worker < ApplicationRecord
     self.reviews.each do |review|
       rates.push(review.smile_rate)
     end
-    average(rates)
+    average(rates).round(1)
   end
 
   def total_rates
     sum = service_rates + skill_rates + voice_rates + earnest_rates + smile_rates
-    return ave = sum.to_f / 5
+    ave = sum.to_f / 5
+    return ave.round(1)
   end
 
   # 評価の平均値を出す

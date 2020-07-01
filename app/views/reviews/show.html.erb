@@ -1,2 +1,150 @@
-<h1>Reviews#show</h1>
-<p>Find me in app/views/reviews/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="review_title center">
+        <h2>『<%= @review.employer.store_name %>』から『<%= @review.worker.fullname %>さん』への評価</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row pa-t-100">
+    <div class="col-3">
+      <div class="review_index-box">
+        <div class="review_index-item pa-20">
+          <h3>総合評価<span class="pa-l-30"><%= @review.total_rates %></span></h3>
+        </div>
+        
+        <div class="review_index-item ma-20">
+          <div class="dis-flex-box pa-r-50">
+            <h5>接客</h5>
+            <h5 class="pa-l-30"><%= @review.service_rate %></h5>
+          </div>
+          <span id="service_star" class="ma-r-10"></span>
+        </div>
+        <div class="review_index-item ma-20">
+          <div class="dis-flex-box pa-r-50">
+            <h5>スキル</h5>
+            <h5 class="pa-l-30"><%= @review.skill_rate %></h5>
+          </div>
+          <span id="skill_star" class="ma-r-10"></span>
+        </div>
+        <div class="review_index-item ma-20">
+          <div class="dis-flex-box pa-r-50">
+            <h5>声の大きさ</h5>
+            <h5 class="pa-l-30"><%= @review.voice_rate %></h5>
+          </div>
+          <span id="voice_star" class="ma-r-10"></span>
+        </div>
+        <div class="review_index-item ma-20">
+          <div class="dis-flex-box pa-r-50">
+            <h5>真面目さ</h5>
+            <h5 class="pa-l-30"><%= @review.earnest_rate %></h5>
+          </div>
+          <span id="earnest_star" class="ma-r-10"></span>
+        </div>
+        <div class="review_index-item ma-20">
+          <div class="dis-flex-box pa-r-50">
+            <h5>笑顔</h5>
+            <h5 class="pa-l-30"><%= @review.smile_rate %></h5>
+          </div>
+          <span id="smile_star" class="ma-r-10"></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-9">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+  <div class="row pa-t-50">
+    <div class="col-12">
+      <div class="review_comment-title">
+        <h4>評価の詳細</h4>
+      </div>
+      <div class="review_comment">
+        <p><%= @review.detail %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  //  レーダーチャート表示用のJS
+  var ctx = document.getElementById("myChart");
+  var myRadarChart = new Chart(ctx, {
+    type: 'radar', 
+    data: { 
+      labels: ["接客", "スキル", "声の大きさ", "真面目さ", "笑顔"],
+      datasets: [{
+        label: '評価',
+        backgroundColor: 'RGBA(115,255,25, 0.5)',
+        borderColor: 'RGBA(115,255,25, 1)',
+        borderWidth: 1,
+        data: [
+          <%= @review.service_rate %>,
+          <%= @review.skill_rate %>,
+          <%= @review.voice_rate %>,
+          <%= @review.earnest_rate %>,
+          <%= @review.smile_rate %>
+        ]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: '評価'
+      },
+      scale:{
+        ticks:{
+          suggestedMin: 0,
+          suggestedMax: 10,
+          stepSize: 2,
+        }
+      }
+    }
+  });
+
+  // レビューの星表示用のJS
+  $("#service_star").raty({
+    size: 36,
+    starOff: "<%= asset_path("star-off.png") %>",
+    starOn: "<%= asset_path("star-on.png") %>",
+    number: 10,
+    score: <%= @review.service_rate %>,
+    scoreName: "review[service_rate]",
+    readOnly: true,
+  });
+  $("#skill_star").raty({
+    size: 36,
+    starOff: "<%= asset_path("star-off.png") %>",
+    starOn: "<%= asset_path("star-on.png") %>",
+    number: 10,
+    score: <%= @review.skill_rate %>,
+    scoreName: "review[skill_rate]",
+    readOnly: true,
+  });
+  $("#voice_star").raty({
+    size: 36,
+    starOff: "<%= asset_path("star-off.png") %>",
+    starOn: "<%= asset_path("star-on.png") %>",
+    number: 10,
+    score: <%= @review.voice_rate %>,
+    scoreName: "review[voice_rate]",
+    readOnly: true,
+  });
+  $("#earnest_star").raty({
+    size: 36,
+    starOff: "<%= asset_path("star-off.png") %>",
+    starOn: "<%= asset_path("star-on.png") %>",
+    number: 10,
+    score: <%= @review.earnest_rate %>,
+    scoreName: "review[earnest_rate]",
+    readOnly: true,
+  });
+  $("#smile_star").raty({
+    size: 36,
+    starOff: "<%= asset_path("star-off.png") %>",
+    starOn: "<%= asset_path("star-on.png") %>",
+    number: 10,
+    score: <%= @review.smile_rate %>,
+    scoreName: "review[smile_rate]",
+    readOnly: true,
+  });
+</script>

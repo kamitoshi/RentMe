@@ -1,2 +1,49 @@
-<h1>Reviews#index</h1>
-<p>Find me in app/views/reviews/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="review_title pa-30">
+        <h2>『<%= @worker.fullname %>さん』の評価一覧</h2>
+      </div>
+      <div class="review_index-box dis-flex-box">
+        <% @reviews.each do |review| %>
+          <div class="card mb-3" style="width: 540px;">
+            <div class="card-header"><%= review.employer.store_name %></div>
+            <div class="card-body">
+              <h5 class="card-title center">総合評価<span class="pa-l-30"><%= review.total_rates %></span></h5>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="row">接客</th>
+                    <td><%= review.service_rate %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">スキル</th>
+                    <td><%= review.skill_rate %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">声の大きさ</th>
+                    <td><%= review.voice_rate %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">真面目さ</th>
+                    <td><%= review.earnest_rate %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">笑顔</th>
+                    <td><%= review.smile_rate %></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="review_content">
+                <%= review.detail.truncate(24, omission: '...') %>
+              </div>
+              <div class="review_detail-btn right">
+                <%= link_to "詳細を見る", review_path(review) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div> 

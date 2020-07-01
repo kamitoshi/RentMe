@@ -28,6 +28,9 @@
             <%= current_employer.introduction %>
           </div>
         </div>
+        <div class="link_btn">
+          <%= link_to "プロフィール編集", edit_employer_path(current_employer), class:"page-link text-dark d-inline-block" %>
+        </div>
       </div>
       <div class="employer_menu-box">
         <ul class="list-group list-group-flush">
@@ -35,7 +38,7 @@
           <li class="list-group-item"><%= link_to "保留中案件一覧", holds_path %></li>
           <li class="list-group-item"><%= link_to "お気に入りワーカー一覧", likes_path %></li>
           <li class="list-group-item"></li>
-          <li class="list-group-item"><%= link_to "プロフィール編集", edit_employer_path(current_employer) %></li>
+          <li class="list-group-item"></li>
           <li class="list-group-item"><%= link_to "ログアウト", destroy_employer_session_path, method: :delete %></li>
           <li class="list-group-item"><%= link_to "退会する", employer_path(current_employer), method: :delete %></li>
         </ul>  

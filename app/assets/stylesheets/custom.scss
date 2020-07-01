@@ -318,6 +318,7 @@
 // display //
 .dis-flex-box {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
 }
@@ -444,4 +445,14 @@
 }
 .pointer {
   cursor: pointer;
+}
+
+.link_btn {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  a {
+    width: 100%;
+  }
 }
