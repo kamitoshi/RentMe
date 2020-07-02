@@ -1,0 +1,64 @@
+<% if banks.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="7%"></th>
+        <th width="25%">金融機関名</th>
+        <th width="10%">支店番号</th>
+        <th width="25%">口座番号</th>
+        <th width="18%"></th>
+        <th width="15%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% banks.each do |bank| %>
+        <% if bank == @bank %>
+          <% @bank = bank %>
+          <%= form_for @bank do |f| %>
+            <tr>
+              <th scope="row"><%= "メイン" if bank.is_default? %></th>
+              <td><%= f.text_field :bank_name, class:"form-control", placeholder: "金融機関名" %></td>
+              <td><%= f.number_field :store_number, class:"form-control", placeholder: "支店番号" %></td>
+              <td><%= f.number_field :account_number, class:"form-control", placeholder: "口座番号" %></td>
+              <td>
+                <div class="pa-t-10">
+                  <%= f.check_box :is_default, {}, true, false %>
+                  <%= f.label :is_default, "メインバンクに登録" %>
+                </div>
+              </td>
+              <td>
+                <%= f.submit "編集", class:"btn btn-primary btn-sm" %>
+                
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <th scope="row"><%= "メイン" if bank.is_default? %></th>
+            <td><%= bank.bank_name %></td>
+            <td><%= bank.store_number %></td>
+            <td><%= bank.account_number %></td>
+            <td></td>
+            <td></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="7%"></th>
+        <th width="25%">金融機関名</th>
+        <th width="10%">支店番号</th>
+        <th width="25%">口座番号</th>
+        <th width="18%"></th>
+        <th width="15%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <td colspan="6">まだ登録されていません</td>
+    </tbody>
+  </table>
+<% end %>

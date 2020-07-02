@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3>入金先口座一覧</h3>
+      <div id="bank_index">
+        <%= render "banks/bank_index", banks: @banks %>
+      </div>
+      <div id="bank_input">
+        <%= render "banks/input_bank" %>
+      </div>
+      <div class="links">
+        <%= link_to "マイページに戻る", workers_path, class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
