@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_27_102340) do
+ActiveRecord::Schema.define(version: 2020_07_01_062231) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer "worker_id"
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(version: 2020_06_27_102340) do
     t.index ["employer_id"], name: "index_holds_on_employer_id"
     t.index ["suggest_id", "employer_id"], name: "index_holds_on_suggest_id_and_employer_id", unique: true
     t.index ["suggest_id"], name: "index_holds_on_suggest_id"
+  end
+
+  create_table "incumbents", force: :cascade do |t|
+    t.integer "worker_id"
+    t.string "store_name", null: false
+    t.string "description"
+    t.boolean "is_active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["worker_id"], name: "index_incumbents_on_worker_id"
   end
 
   create_table "likes", force: :cascade do |t|

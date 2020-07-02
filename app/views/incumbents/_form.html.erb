@@ -1,0 +1,22 @@
+<%= form_for @incumbent do |f| %>
+
+  <div class="field">
+    <%= f.label :store_name, "アルバイト先", class:"label" %><br />
+    <%= f.text_field :store_name, autofocus: true, autocomplete: "store_name", class:"form-control", placeholder: "ガスト　新宿店" %>
+  </div>
+
+  <div class="field selectbox">
+    <%= f.label :description, "担当業務", class:"label" %><br />
+    <%= f.collection_select :description, Type.all, :name, :name, {prompt: "選択してください"}, {class: "form-control"} %>
+  </div>
+
+  <div class="field">
+    <%= f.check_box :is_active, {}, true, false %>
+    <%= f.label :is_active, "在籍中(チェックを外すと在籍中ではなくなります)" %>
+  </div>
+
+  <div class="actions wid-50 ma-a">
+    <%= f.submit "登録する", class:"btn btn-primary wid-100" %>
+  </div>
+
+<% end %>

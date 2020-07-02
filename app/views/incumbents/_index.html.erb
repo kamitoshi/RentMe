@@ -1,0 +1,83 @@
+<% if incumbents.any? %>
+  <% if incumbents.count == 1 %>
+    <% incumbents.each do |incumbent| %>
+      <div class="incumbent_info-box pa-20 ma-10 border">
+        <h5>アルバイト先情報</h5>
+        <hr>
+        <h5 class="dis-ib">店名</h5>
+        <div class="btn-box dis-ib pa-l-100 ma-l-50">
+          <div class="edit-btn dis-ib pa-10">
+            <%= link_to edit_incumbent_path(incumbent) do %>
+              <i class="fas fa-edit" style="color: gray;"></i>
+            <% end %>
+          </div>
+          <div class="destroy-btn dis-ib pa-10">
+            <%= link_to incumbent_path(incumbent), method: :delete, data:{confirm: "本当に削除してよろしいですか？"} do %>
+              <i class="fas fa-trash" style="color: gray;"></i>
+            <% end %>
+          </div>
+        </div>
+        <p class="pa-l-30"><%= incumbent.store_name %></p>
+        <h5>担当</h5>
+        <p class="pa-l-30"><%= incumbent.description %></p>
+        <% if incumbent.is_active? %>
+          <p class="right">在籍中</p>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="incumbent_info-box pa-20 ma-10 border">
+      <h5>アルバイト先情報</h5>
+      <hr>
+      <% incumbents.first(2).each do |incumbent| %>
+        <h5 class="dis-ib">店名</h5>
+        <div class="btn-box dis-ib pa-l-100 ma-l-50">
+          <div class="edit-btn dis-ib pa-10">
+            <%= link_to edit_incumbent_path(incumbent) do %>
+              <i class="fas fa-edit" style="color: gray;"></i>
+            <% end %>
+          </div>
+          <div class="destroy-btn dis-ib pa-10">
+            <%= link_to incumbent_path(incumbent), method: :delete, data:{confirm: "本当に削除してよろしいですか？"} do %>
+              <i class="fas fa-trash" style="color: gray;"></i>
+            <% end %>
+          </div>
+        </div>
+        <p class="pa-l-30"><%= incumbent.store_name %></p>
+        <h5>担当</h5>
+        <p class="pa-l-30"><%= incumbent.description %></p>
+        <% if incumbent.is_active? %>
+          <p class="right">在籍中</p>
+        <% end %>
+        <hr>
+      <% end %>
+      <div class="collapse" id="collapseIncumbent">
+        <% incumbents[2..-1].each do |incumbent| %>
+          <h5 class="dis-ib">店名</h5>
+          <div class="btn-box dis-ib pa-l-100 ma-l-50">
+          <div class="edit-btn dis-ib pa-10">
+            <%= link_to edit_incumbent_path(incumbent) do %>
+              <i class="fas fa-edit" style="color: gray;"></i>
+            <% end %>
+          </div>
+          <div class="destroy-btn dis-ib pa-10">
+            <%= link_to incumbent_path(incumbent), method: :delete, data:{confirm: "本当に削除してよろしいですか？"} do %>
+              <i class="fas fa-trash" style="color: gray;"></i>
+            <% end %>
+          </div>
+        </div>
+          <p class="pa-l-30"><%= incumbent.store_name %></p>
+          <h5>担当</h5>
+          <p class="pa-l-30"><%= incumbent.description %></p>
+          <% if incumbent.is_active? %>
+            <p class="right">在籍中</p>
+          <% end %>
+          <hr>
+        <% end %>
+      </div>
+        <a class="dis-b right" data-toggle="collapse" href="#collapseIncumbent" aria-expanded="false" aria-controls="collapseIncumbent">
+          もっと見る...
+        </a>
+    </div>
+  <% end %>
+<% end %>

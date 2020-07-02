@@ -22,6 +22,7 @@ class Worker < ApplicationRecord
   has_many :locations, dependent: :destroy
   has_many :contracts, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :incumbents, dependent: :destroy
 
   # Likeアソシエーション(現時点でワーカーからはlikeしない)
   has_many :likes, dependent: :destroy

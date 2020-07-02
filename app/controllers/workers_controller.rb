@@ -3,6 +3,7 @@ class WorkersController < ApplicationController
   before_action :set_worker, only:[:show, :edit, :image_edit, :update, :destroy]
 
   def index
+    @incumbents = Incumbent.where(worker_id: current_worker.id,).order(is_active: :desc).order(updated_at: :desc)
     suggests = Suggest.where(worker_id: current_worker.id).order(target_date: :asc)
     @suggests = suggests.where(is_active: true)
     @offers = []

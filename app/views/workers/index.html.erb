@@ -34,6 +34,10 @@
             <%= current_worker.introduction %>
           </div>
         </div>
+        <div class="link_btn">
+          <%= link_to "プロフィール編集", edit_worker_path(current_worker), class:"page-link text-dark d-inline-block" %>
+        </div>
+        <%= render "incumbents/index", incumbents: @incumbents %>
       </div>
       <div class="worker_menu-box">
         <ul class="list-group list-group-flush">
@@ -42,7 +46,6 @@
           <li class="list-group-item"><%= link_to "登録希望勤務地一覧", locations_path %></li>
           <li class="list-group-item"></li>
           <li class="list-group-item"></li>
-          <li class="list-group-item"><%= link_to "プロフィール編集", edit_worker_path(current_worker) %></li>
           <li class="list-group-item"><%= link_to "ログアウト", destroy_worker_session_path, method: :delete %></li>
           <li class="list-group-item"><%= link_to "退会する", worker_path(current_worker), method: :delete %></li>
         </ul>  
