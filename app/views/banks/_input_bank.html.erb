@@ -1,0 +1,21 @@
+<p class="pa-t-50">入金口座を新しく追加する</p>
+<%= form_for @bank, url: banks_path, method: :post, remote: true do |f| %>
+  <div class="form-row">
+    <div class="form-group col-3">
+      <%= f.text_field :bank_name, autocomplete: "bank_name", class:"form-control", placeholder: "金融機関名" %>
+    </div>
+    <div class="form-group col-2">
+      <%= f.number_field :store_number, autocomplete: "store_number", class:"form-control", placeholder: "支店番号" %>
+    </div>
+    <div class="form-group col-3">
+      <%= f.number_field :account_number, autocomplete: "account_number", class:"form-control", placeholder: "口座番号" %>
+    </div>
+    <div class="form-group col-2 pa-t-10">
+      <%= f.check_box :is_default, {}, true, false %>
+      <%= f.label :is_default, "メインバンクに登録" %>
+    </div>
+    <div class="actions col-2 center">
+      <%= f.submit "追加する", class:"btn btn-success wid-80" %>
+    </div>
+  </div>
+<% end %>

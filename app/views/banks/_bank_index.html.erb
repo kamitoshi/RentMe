@@ -1,0 +1,42 @@
+<% if banks.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="7%"></th>
+        <th width="25%">金融機関名</th>
+        <th width="10%">支店番号</th>
+        <th width="25%">口座番号</th>
+        <th width="18%"></th>
+        <th width="15%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% banks.each do |bank| %>
+        <tr>
+          <th scope="row"><%= "メイン" if bank.is_default? %></th>
+          <td><%= bank.bank_name %></td>
+          <td><%= bank.store_number %></td>
+          <td><%= bank.account_number %></td>
+          <td></td>
+          <td><%= link_to "編集/削除", edit_bank_path(bank), class:"btn btn-warning btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="7%"></th>
+        <th width="25%">金融機関名</th>
+        <th width="10%">支店番号</th>
+        <th width="25%">口座番号</th>
+        <th width="18%"></th>
+        <th width="15%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <td colspan="6">まだ登録されていません</td>
+    </tbody>
+  </table>
+<% end %>

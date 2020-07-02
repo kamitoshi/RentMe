@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'incumbents/new'
-  get 'incumbents/edit'
   root 'home#top'
   get '/about', to: "home#about", as: "about"
   devise_for :workers, controllers:{
@@ -58,5 +56,6 @@ Rails.application.routes.draw do
   resources :likes, only:[:index]
   resources :reviews, only:[:index, :show]
   resources :incumbents, only:[:new, :create, :edit, :update, :destroy]
+  resources :banks, only:[:index, :create, :edit, :update, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
