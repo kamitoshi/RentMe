@@ -14,8 +14,8 @@
       <% if @offers.any? %>
         <tbody>
           <% @offers.each_with_index do |offer, index| %>
-            <tr class="position-relative">
-              <th scope="row"><%= link_to index + 1, offer_path(offer) %></th>
+            <tr class="position-relative" data-href="<%= offer_path(offer) %>">
+              <th scope="row"><%= index + 1 %></th>
               <td><%= offer.suggest.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(offer.suggest.target_date) %>）</td>
               <td><%= offer.opening.strftime("%H:%M") %>〜<%= offer.closing.strftime("%H:%M") %></td>
               <td>¥<%= offer.price.to_s(:delimited) %></td>

@@ -26,6 +26,13 @@ textarea {
     font-size: 24px;
   }
 }
+.table-hover {
+  tbody {
+    tr {
+      cursor: pointer;
+    }
+  }
+}
 
 .index-box {
   height: 300px;

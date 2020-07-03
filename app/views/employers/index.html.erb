@@ -9,17 +9,17 @@
             <%= image_tag "store-no-image.png", size: "300x250" %>
           <% end %>
         </div>
-        <div class="address">
-          <p>
-            〒<%= current_employer.postal_code %><br>
-            <%= current_employer.address %>
-          </p>
-        </div>
         <div class="employer_name-box pa-b-50">
           <%= current_employer.kana_store_name %><br>
           <span class="font-30"><%= current_employer.store_name %></span>
         </div>
         <div class="employer_info-box">
+          <div class="address">
+            <p>
+              〒<%= current_employer.postal_code %><br>
+              <%= current_employer.address %>
+            </p>
+          </div>
           <div class="phone_number">
             <p>TEL：<%= current_employer.phone_number %></p>
           </div>
@@ -29,23 +29,31 @@
           </div>
         </div>
         <div class="link_btn">
-          <%= link_to "プロフィール編集", edit_employer_path(current_employer), class:"page-link text-dark d-inline-block" %>
+          <%= link_to "店舗情報編集", edit_employer_path(current_employer), class:"page-link text-dark d-inline-block" %>
         </div>
       </div>
       <div class="employer_menu-box">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><%= link_to "掲載案件一覧", suggests_path %></li>
-          <li class="list-group-item"><%= link_to "保留中案件一覧", holds_path %></li>
-          <li class="list-group-item"><%= link_to "お気に入りワーカー一覧", likes_path %></li>
-          <li class="list-group-item"></li>
-          <li class="list-group-item"></li>
           <li class="list-group-item"><%= link_to "ログアウト", destroy_employer_session_path, method: :delete %></li>
-          <li class="list-group-item"><%= link_to "退会する", employer_path(current_employer), method: :delete %></li>
         </ul>  
       </div>
     </div>
     <div class="col-8">
       <div class="all_index-box">
+        <div class="worker_menu row pa-y-50">
+          <div class="link_btn col-6">
+            <%= link_to "掲載案件一覧", suggests_path, class: "menu_btn" %>
+          </div>
+          <div class="link_btn col-6">
+            <%= link_to "シフト管理", "#", class:"menu_btn" %>
+          </div>
+          <div class="link_btn col-6">
+            <%= link_to "保留中案件一覧", holds_path, class: "menu_btn" %>
+          </div>
+          <div class="link_btn col-6">
+            <%= link_to "お気に入り", likes_path, class: "menu_btn" %>
+          </div>
+        </div>
         <%= render "employers/offers_index" %>
         <%= render "employers/contracts_index" %>
         <%= render "employers/reviews_index" %>

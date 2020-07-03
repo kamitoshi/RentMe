@@ -47,7 +47,7 @@ class OffersController < ApplicationController
     @suggest = @offer.suggest
     unless @offer.employer == current_employer
       flash[:danger] = "他店舗のオファーは編集できません"
-      redirect_to employer_path(current_employer)
+      redirect_to employers_path
     end
   end
 
@@ -70,7 +70,7 @@ class OffersController < ApplicationController
       end
     else
       flash[:danger] = "他店舗のオファーは編集できません"
-      redirect_to employer_path(current_employer)
+      redirect_to employers_path
     end
   end
 
@@ -82,14 +82,14 @@ class OffersController < ApplicationController
           redirect_to offer_path(@offer)
         else
           flash.now[:danger] = "オファーの取り下げることができませんでした"
-          redirect_to offer_path
+          redirect_to offer_path(@offer)
         end
       else
         flash[:danger] = "すでに取り下げられています"
       end
     else
       flash[:danger] = "他店舗のオファーは取り下げることができません"
-      redirect_to employer_path(current_employer)
+      redirect_to employers_path
     end
   end
 
@@ -104,11 +104,11 @@ class OffersController < ApplicationController
       elsif params[:approval] == "0"
         @offer.update(is_approval: false)
         flash[:danger] = "オファーを拒否しました"
-        redirect_to worker_path(current_worker)
+        redirect_to workers_path
       end 
     else
       flash[:danger] = "自分にきたオファー以外回答できません"
-      redirect_to worker_path(current_worker)
+      redirect_to workers_path
     end
   end
   
@@ -120,7 +120,7 @@ class OffersController < ApplicationController
       else
         if @offer.destroy
           flash[:success] = "オファーを削除しました"
-          redirect_to employer_path(current_employer)
+          redirect_to employers_path
         else
           flash[:danger] = "オファーの削除に失敗しました"
           redirect_to offer_path(@offer)

@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
 
   def index
     if worker_signed_in?
+      @worker = current_worker
       @reviews = Review.where(worker_id: current_worker.id)
     elsif employer_signed_in?
       if params[:worker_id].present?

@@ -28,7 +28,7 @@
               </td>
               <td>
                 <%= f.submit "編集", class:"btn btn-primary btn-sm" %>
-                
+                <%= link_to "削除", bank_path(@bank), method: :delete, class:"btn btn-danger btn-sm" %>
               </td>
             </tr>
           <% end %>

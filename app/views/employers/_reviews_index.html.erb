@@ -11,7 +11,7 @@
       <% if @review_contracts.any? %>
           <tbody>
             <% @review_contracts.each do |contract| %>
-              <tr>
+              <tr data-href="<%= contract_path(contract) %>">
                 <td><%= contract.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(contract.target_date) %>）<%= contract.opening.strftime("%H:%M") %>〜<%= contract.closing.strftime("%H:%M") %></td>
                 <td><%= contract.worker.fullname %></td>
               </tr>

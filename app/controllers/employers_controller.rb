@@ -30,7 +30,7 @@ class EmployersController < ApplicationController
       end
     else
       flash[:alert] = "他店の情報は編集できません"
-      redirect_to employer_path(current_employer)
+      redirect_to employers_path
     end
   end
 
@@ -44,7 +44,7 @@ class EmployersController < ApplicationController
       end
     else
       flash[:alert] = "他店を退会させることはできません"
-      redirect_to employer_path(current_employer)
+      redirect_to employers_path
     end
   end
 

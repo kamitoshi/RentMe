@@ -1,16 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-8 offset-2">
+      <%= render "suggests/content", suggest: @suggest %>
       <% if employer_signed_in? %>
-        <div id="hold_toggle" class="right">
+        <div id="hold_toggle" class="ma-b-50">
           <%= render partial:"holds/hold_btn", locals:{suggest: @suggest, hold: @hold} %>
+          <p>保留しておくと、保留の一覧から探しやすくなります</p>
         </div>
       <% elsif %>
-        <div class="link_btn right">
+        <div class="link-btn ma-b-50 right">
           <%= link_to "編集/削除", edit_suggest_path(@suggest), class:"btn btn-info" %>
         </div>
       <% end %>
-      <%= render "suggests/content", suggest: @suggest %>
       <% if employer_signed_in? %>
         <% if @suggest.is_active? %>
           <div class="contract-link wid-70 ma-a">

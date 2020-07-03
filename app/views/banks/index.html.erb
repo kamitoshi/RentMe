@@ -1,7 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h3>入金先口座一覧</h3>
+      <h3 class="dis-ib">入金先口座一覧</h3><span class="font-18">（５件まで登録できます）</span>
+      <p>
+        <span class="red">注意！</span><br>
+        ６件目の登録があった場合、一番更新の少ない口座の情報が削除されます。</p>
       <div id="bank_index">
         <%= render "banks/bank_index", banks: @banks %>
       </div>

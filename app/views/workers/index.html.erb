@@ -29,31 +29,44 @@
           <div class="phone_number">
             <p>TEL：<%= current_worker.phone_number %></p>
           </div>
-          <div class="introduction">
+          <div class="introduction pa-b-30">
             <p>自己紹介文</p>
             <%= current_worker.introduction %>
           </div>
-        </div>
-        <div class="link_btn">
-          <%= link_to "プロフィール編集", edit_worker_path(current_worker), class:"page-link text-dark d-inline-block" %>
+          <div class="link_btn">
+            <%= link_to "プロフィール詳細/編集", worker_path(current_worker), class:"page-link text-dark d-inline-block" %>
+          </div>
+          <div class="location">
+            <%= render "locations/index", locations: @locations %>
+          </div>
         </div>
         <%= render "incumbents/index", incumbents: @incumbents %>
       </div>
       <div class="worker_menu-box">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><%= link_to "掲載情報一覧", suggests_path %></li>
-          <li class="list-group-item"><%= link_to "新規掲載する", new_suggest_path %></li>
-          <li class="list-group-item"><%= link_to "登録希望勤務地一覧", locations_path %></li>
           <li class="list-group-item"><%= link_to "入金口座一覧", banks_path %></li>
           <li class="list-group-item"></li>
           <li class="list-group-item"><%= link_to "ログアウト", destroy_worker_session_path, method: :delete %></li>
-          <li class="list-group-item"><%= link_to "退会する", worker_path(current_worker), method: :delete %></li>
         </ul>  
       </div>
     </div>
     <div class="col-8">
       <div class="all_index-box">
         <%= render "workers/new_index" %>
+        <div class="worker_menu row pa-y-50">
+          <div class="link_btn col-6">
+            <%= link_to "案件作成", new_suggest_path, class:"menu_btn" %>
+          </div>
+          <div class="link_btn col-6">
+            <%= link_to "スケジュール管理", "#", class:"menu_btn" %>
+          </div>
+          <div class="link_btn col-6">
+            <%= link_to "契約履歴", contracts_path, class:"menu_btn" %>
+          </div>
+          <div class="link_btn col-6">
+            <%= link_to "レビュー一覧", reviews_path, class:"menu_btn" %>
+          </div>
+        </div>
         <%= render "workers/suggests_index" %>
         <%= render "workers/contracts_index" %>
         <%= render "workers/reviews_index" %>

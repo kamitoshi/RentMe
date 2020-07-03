@@ -10,7 +10,7 @@ class Offer < ApplicationRecord
     offers = self.suggest.offers
     offers.each do |o|
       if o == self
-        skip
+        next
       else
         o.destroy
       end
