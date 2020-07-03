@@ -4,6 +4,7 @@ class WorkersController < ApplicationController
 
   def index
     @incumbents = Incumbent.where(worker_id: current_worker.id,).order(is_active: :desc).order(updated_at: :desc)
+    @locations = current_worker.locations.order(prefecture: :desc).order(city: :desc)
     suggests = Suggest.where(worker_id: current_worker.id).order(target_date: :asc)
     @suggests = suggests.where(is_active: true)
     @offers = []
@@ -17,15 +18,13 @@ class WorkersController < ApplicationController
       end
     end
     contracts = Contract.where(worker_id: current_worker.id)
-    @reviews = []
-    contracts.each do |contract|
-      @reviews.push(contract.review)
-    end
+    @reviews = Review.where(worker_id: current_worker.id)
     @contracts = contracts.where(status: 0)
     @review_contracts = contracts.where(status: 1)
   end
 
   def show
+    @reviews = @worker.reviews.sample(4)
   end
 
   def edit

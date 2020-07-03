@@ -1,0 +1,94 @@
+<div class="review_index-box dis-flex-box">
+  <% reviews.each_with_index do |review, index| %>
+    <div class="card mb-3" style="width: 540px;">
+      <div class="card-header"><%= review.employer.store_name %></div>
+      <div class="card-body">
+        <h5 class="card-title center">総合評価<span class="pa-l-30"><%= review.total_rates %></span></h5>
+        <table class="table table-sm">
+          <tbody>
+            <tr>
+              <th scope="row" width="20%">接客</th>
+              <td width="40%"><span id="service_star_<%= index %>" class="ma-r-10"></span></td>
+              <td width="20%"><%= review.service_rate %></td>
+            </tr>
+            <tr>
+              <th scope="row">スキル</th>
+              <td><span id="skill_star_<%= index %>" class="ma-r-10"></span></td>
+              <td><%= review.skill_rate %></td>
+            </tr>
+            <tr>
+              <th scope="row">声の大きさ</th>
+              <td><span id="voice_star_<%= index %>" class="ma-r-10"></span></td>
+              <td><%= review.voice_rate %></td>
+            </tr>
+            <tr>
+              <th scope="row">真面目さ</th>
+              <td><span id="earnest_star_<%= index %>" class="ma-r-10"></span></td>
+              <td><%= review.earnest_rate %></td>
+            </tr>
+            <tr>
+              <th scope="row">笑顔</th>
+              <td><span id="smile_star_<%= index %>" class="ma-r-10"></span></td>
+              <td><%= review.smile_rate %></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="pa-10">詳細</h5>
+        <div class="review_content pa-x-20">
+          <%= review.detail.truncate(24, omission: '...') %>
+        </div>
+        <div class="review_detail-btn right">
+          <%= link_to "詳細を見る", review_path(review) %>
+        </div>
+      </div>
+    </div>
+    <script>
+      // レビューの星表示用のJS
+      $("#service_star_<%= index %>").raty({
+        size: 36,
+        starOff: "<%= asset_path("star-off.png") %>",
+        starOn: "<%= asset_path("star-on.png") %>",
+        number: 10,
+        score: <%= review.service_rate %>,
+        scoreName: "review[service_rate]",
+        readOnly: true,
+      });
+      $("#skill_star_<%= index %>").raty({
+        size: 36,
+        starOff: "<%= asset_path("star-off.png") %>",
+        starOn: "<%= asset_path("star-on.png") %>",
+        number: 10,
+        score: <%= review.skill_rate %>,
+        scoreName: "review[skill_rate]",
+        readOnly: true,
+      });
+      $("#voice_star_<%= index %>").raty({
+        size: 36,
+        starOff: "<%= asset_path("star-off.png") %>",
+        starOn: "<%= asset_path("star-on.png") %>",
+        number: 10,
+        score: <%= review.voice_rate %>,
+        scoreName: "review[voice_rate]",
+        readOnly: true,
+      });
+      $("#earnest_star_<%= index %>").raty({
+        size: 36,
+        starOff: "<%= asset_path("star-off.png") %>",
+        starOn: "<%= asset_path("star-on.png") %>",
+        number: 10,
+        score: <%= review.earnest_rate %>,
+        scoreName: "review[earnest_rate]",
+        readOnly: true,
+      });
+      $("#smile_star_<%= index %>").raty({
+        size: 36,
+        starOff: "<%= asset_path("star-off.png") %>",
+        starOn: "<%= asset_path("star-on.png") %>",
+        number: 10,
+        score: <%= review.smile_rate %>,
+        scoreName: "review[smile_rate]",
+        readOnly: true,
+      });
+    </script>
+  <% end %>
+</div>

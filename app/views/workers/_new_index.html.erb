@@ -16,7 +16,7 @@
         <% if @offers.any? %>
           <tbody>
             <% @offers.each do |offer| %>
-              <tr>
+              <tr data-href="<%= offer_path(offer) %>">
                 <td><%= offer.suggest.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(offer.suggest.target_date) %>）<%= offer.opening.strftime("%H:%M") %>〜<%= offer.closing.strftime("%H:%M") %></td>
                 <td><%= offer.employer.store_name %></td>
                 <td>¥<%= offer.price.to_s(:delimited) %></td>

@@ -1,5 +1,5 @@
 <p class="pa-t-50">入金口座を新しく追加する</p>
-<%= form_for @bank, url: banks_path, method: :post, remote: true do |f| %>
+<%= form_for @bank, url: banks_path, method: :post do |f| %>
   <div class="form-row">
     <div class="form-group col-3">
       <%= f.text_field :bank_name, autocomplete: "bank_name", class:"form-control", placeholder: "金融機関名" %>

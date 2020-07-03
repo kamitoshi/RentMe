@@ -1,0 +1,23 @@
+<div class="lication_info-box ma-20">
+  <h5>希望勤務地</h5>
+  <table class="table table-borderless">
+    <tbody>
+      <% if locations.any? %>
+        <% locations.each do |location| %>
+          <tr>
+            <td><%= location.prefecture %></td>
+            <td><%= location.city %></td>
+            <td><%= location.place %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="3">まだ登録されていません</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="link right">
+    <%= link_to "希望勤務地一覧/新規登録", locations_path %>
+  </div>
+</div>

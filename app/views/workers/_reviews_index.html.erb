@@ -14,8 +14,8 @@
       <% if @review_contracts.any? %>
         <tbody>
           <% @review_contracts.each_with_index do |contract, index| %>
-            <tr class="position-relative">
-              <th scope="row"><%= link_to index + 1, contract_path(contract) %></th>
+            <tr class="position-relative" data-href="<%= contract_path(contract) %>">
+              <th scope="row"><%= index + 1 %></th>
               <td><%= contract.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(contract.target_date) %>）</td>
               <td><%= contract.opening.strftime("%H:%M") %>〜<%= contract.closing.strftime("%H:%M") %></td>
               <td><%= contract.job_description %></td>

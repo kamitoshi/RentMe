@@ -66,6 +66,7 @@
       <div class="employer_edit-sidebar wid-70 ma-a">
         <%= link_to "店舗画像変更", image_edit_employer_path(@employer), class:"btn btn-primary wid-100 ma-y-10" %>
         <%= link_to "パスワード変更", edit_employer_registration_path, class:"btn btn-primary wid-100 ma-y-10" %>
+        <%= link_to "退会する", employer_path(current_employer), method: :delete, class:"btn btn-danger wid-100 ma-y-10" %>
       </div>
     </div>
   </div>

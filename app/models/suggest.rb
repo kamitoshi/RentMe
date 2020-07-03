@@ -1,6 +1,6 @@
 class Suggest < ApplicationRecord
   belongs_to :worker
-  has_many :holds
+  has_many :holds, dependent: :destroy
   has_many :offers, dependent: :destroy
 
   # Typeアソシエーション 

@@ -11,8 +11,8 @@
             <% end %>
           </div>
           <% if worker_signed_in? %>
-            <div class="worker_image-edit wid-60 ma-a pa-t-30">
-              <%= link_to "プロフィール画像変更", image_edit_worker_path(@worker), class:"btn btn-primary wid-100" %>
+            <div class="worker_edit wid-60 ma-a pa-t-30">
+              <%= link_to "編集する", edit_worker_path(current_worker), class:"btn btn-outline-primary wid-100" %>
             </div>
           <% end %>
         </div>
@@ -26,7 +26,7 @@
               <p>性別：<%= @worker.sex_i18n %>（満<%= @worker.age %>歳）</p>
             </div>
             <div class="birthday">
-              <p>生年月日：<%= @worker.birthday.strftime("%Y年%m月%d日") %>（満<%= @worker.age %>歳）</p>
+              <p>生年月日：<%= @worker.birthday.strftime("%Y年%m月%d日") %></p>
             </div>
             <div class="address">
               <p>
@@ -79,9 +79,6 @@
             </tr>
           </tbody>
         </table>
-        <div class="link_btn center">
-          <%= link_to "レビュー一覧を見る", reviews_path(worker_id: @worker.id), class:"link-btn border" %>
-        </div>
       </div>
       <div class="col-9">
         <canvas id="myChart"></canvas>
@@ -121,6 +118,10 @@
       </div>
     </div>
   <% end %>
+  <%= render "reviews/index", reviews: @reviews %>
+  <div class="link right">
+    <%= link_to "レビュー一覧を見る", reviews_path(worker_id: @worker.id) %>
+  </div>
 </div>
 
 <script>

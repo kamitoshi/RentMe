@@ -14,8 +14,8 @@
       <% if @suggests.any? %>
         <tbody>
           <% @suggests.each_with_index do |suggest, index| %>
-            <tr class="position-relative">
-              <th scope="row"><%= link_to index + 1, suggest_path(suggest) %></th>
+            <tr class="position-relative" data-href="<%= suggest_path(suggest) %>">
+              <th scope="row"><%= index + 1 %></th>
               <td><%= suggest.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(suggest.target_date) %>）</td>
               <td><%= suggest.opening.strftime("%H:%M") %>〜<%= suggest.closing.strftime("%H:%M") %></td>
               <td>
