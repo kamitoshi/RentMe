@@ -1,11 +1,15 @@
 <div class="review_index">
-  <h4 class="sub-title">レビュー未済</h4>
-  <div class="index-box border scroll-box">
+  <h4 class="sub-title dis-ib">新着</h4>
+  <% if @review_contracts.any? %>
+    <span class="blinking red">レビューが済んでいない案件があります</span>
+  <% end %>
+  <div class="review_index-box border scroll-box">
     <table class="table table-borderless table-hover">
       <thead>
         <tr>
-          <th scope="col" width="60%">勤務日時</th>
-          <th scope="col" width="40%">レビュー対象</th>
+          <th scope="col" width="45%">勤務日時</th>
+          <th scope="col" width="30%">レビュー対象</th>
+          <th width="25%"></th>
         </tr>
       </thead>
       <% if @review_contracts.any? %>
@@ -14,12 +18,13 @@
               <tr data-href="<%= contract_path(contract) %>">
                 <td><%= contract.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(contract.target_date) %>）<%= contract.opening.strftime("%H:%M") %>〜<%= contract.closing.strftime("%H:%M") %></td>
                 <td><%= contract.worker.fullname %></td>
+                <td><%= link_to "レビューする", new_contract_review_path(contract) %></td>
               </tr>
             <% end %>
           </tbody>
         <% else %>
           <tbody>
-            <td colspan="2" class="center">新着レビューはありません</td>
+            <td colspan="2" class="center">未済レビュー案件はありません</td>
           </tbody>
         <% end %>
     </table>

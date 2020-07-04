@@ -1,5 +1,12 @@
 <div class="new_index">
-  <h4 class="sub-title">新着</h4>
+  <h4 class="sub-title dis-ib">新着</h4>
+  <% if @reviews.any? && @offers.any? %>
+    <span class="blinking red">新着オファーとレビューがきています</span>
+  <% elsif @offers.any? %>
+    <span class="blinking red">新着オファーがきています</span>
+  <% elsif @reviews.any? %>
+    <span class="blinking red">新着レビューがきています</span>
+  <% end %>
   <div class="index-box border pa-20">
     <div class="new_offer-box scroll-box">
       <table class="table table-borderless table-hover table-sm">

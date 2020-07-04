@@ -1,0 +1,30 @@
+<div class="contract_info-box">
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <th scope="row"><h4>委託者</h4></th>
+        <td><span class="font-20"><%= contract.employer.store_name %>（所在：<%= contract.employer.address %>）</span></td>
+      </tr>
+      <tr>
+        <th scope="row"><h4>受託者</h4></th>
+        <td><span class="font-20"><%= contract.worker.fullname %>（所在：<%= contract.worker.address %>）</span></td>
+      </tr>
+      <tr>
+        <th scope="row"><h4>時給</h4></th>
+        <td><span class="font-20">¥<%= contract.price.to_s(:delimited) %></span></td>
+      </tr>
+      <tr>
+        <th scope="row"><h4>勤務日</h4></th>
+        <td><span class="font-20"><%= contract.target_date.strftime("%Y年%-m月%-d日") %>（<%= weekday(contract.target_date) %>）</span></td>
+      </tr>
+      <tr>
+        <th scope="row"><h4>勤務時間</h4></th>
+        <td><span class="font-20"><%= contract.opening.strftime("%H:%M") %>〜<%= contract.closing.strftime("%H:%M") %></span></td>
+      </tr>
+      <tr>
+        <th scope="row"><h4>主な業務内容</h4></th>
+        <td><span class="font-20"><%= contract.job_description %></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

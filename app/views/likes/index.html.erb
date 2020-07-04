@@ -18,7 +18,7 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title"><%= link_to like.worker.fullname, worker_path(like.worker) %></h5>
-                    <p class="card-text">現在掲載中の案件が○件あります</p>
+                    <p class="card-text">現在掲載中の案件が<%= like.worker.active_suggests.count %>件あります</p>
                     <p class="card-text"><small class="text-muted">最終更新日</small></p>
                   </div>
                 </div>

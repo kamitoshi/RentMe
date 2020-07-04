@@ -1,6 +1,6 @@
 <% if incumbents.any? %>
   <% if incumbents.count < 3 %>
-    <div class="incumbent_info-box pa-20 ma-10 border">
+    <div class="incumbent_info-box pa-20 ma-10">
       <h5>アルバイト先情報</h5>
       <hr>
       <% incumbents.each do |incumbent| %>
@@ -27,7 +27,7 @@
       <% end %>
     </div>
   <% else %>
-    <div class="incumbent_info-box pa-20 ma-10 border">
+    <div class="incumbent_info-box pa-20 ma-10">
       <h5>アルバイト先情報</h5>
       <hr>
       <% incumbents.first(2).each do |incumbent| %>

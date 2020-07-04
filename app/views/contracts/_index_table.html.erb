@@ -1,0 +1,34 @@
+<table class="table table-borderless table-hover">
+  <thead>
+    <tr>
+      <th width="5%"></th>
+      <th scope="col" width="30%">勤務日</th>
+      <th scope="col" width="18%">勤務時間</th>
+      <th scope="col" width="17%">主な業務</th>
+      <th scope="col" width="30%">契約相手</th>
+    </tr>
+  </thead>
+  <% if contracts.any? %>
+    <tbody>
+      <% contracts.each do |contract| %>
+        <tr data-href="<%= contract_path(contract) %>">
+          <th scope="row"></th>
+          <td><%= contract.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(contract.target_date) %>）</td>
+          <td><%= contract.opening.strftime("%H:%M") %>〜<%= contract.closing.strftime("%H:%M") %></td>
+          <td><%= contract.job_description %></td>
+          <td>
+            <% if worker_signed_in? %>
+              <%= contract.employer.store_name %>
+            <% elsif %>
+              <%= contract.worker.fullname %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <tbody>
+      <td colspan="5" class="center">契約中の案件はありません</td>
+    </tbody>
+  <% end %>
+</table>

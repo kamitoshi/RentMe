@@ -6,7 +6,7 @@ class WorkersController < ApplicationController
     @incumbents = Incumbent.where(worker_id: current_worker.id,).order(is_active: :desc).order(updated_at: :desc)
     @locations = current_worker.locations.order(prefecture: :desc).order(city: :desc)
     suggests = Suggest.where(worker_id: current_worker.id).order(target_date: :asc)
-    @suggests = suggests.where(is_active: true)
+    @suggests = suggests.where(is_active: true).order(target_date: :asc)
     @offers = []
     suggests.each do |suggest|
       suggest.offers.each do |offer|
@@ -17,8 +17,8 @@ class WorkersController < ApplicationController
         end
       end
     end
-    contracts = Contract.where(worker_id: current_worker.id)
-    @reviews = Review.where(worker_id: current_worker.id)
+    @reviews = Review.where(worker_id: current_worker.id).order(target_date: :asc)
+    contracts = Contract.where(worker_id: current_worker.id).order(target_date: :asc)
     @contracts = contracts.where(status: 0)
     @review_contracts = contracts.where(status: 1)
   end

@@ -1,0 +1,29 @@
+<div class="form-group" id="service_star">
+    <%= f.label :service_rate, "接客" %><span>（接客態度やお客様からの評価）</span><br>
+    <%= f.hidden_field :service_rate, id: :review_star %>
+  </div>
+
+  <div class="form-group" id="skill_star">
+    <%= f.label :skill_rate, "スキル" %><span>（調理スキルや接客スキル）</span><br>
+    <%= f.hidden_field :skill_rate, id: :review_star %>
+  </div>
+
+  <div class="form-group" id="voice_star">
+    <%= f.label :voice_rate, "声の大きさ" %><span>（お店の雰囲気に合った声の大きさ）</span><br>
+    <%= f.hidden_field :voice_rate, id: :review_star %>
+  </div>
+
+  <div class="form-group" id="earnest_star">
+    <%= f.label :earnest_rate, "真面目さ" %><span>（仕事に対する真面目さ）</span><br>
+    <%= f.hidden_field :earnest_rate, id: :review_star %>
+  </div>
+
+  <div class="form-group" id="smile_star">
+    <%= f.label :smile_rate, "笑顔" %><span>（愛嬌があるか）</span><br>
+    <%= f.hidden_field :smile_rate, id: :review_star %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :detail, "レビュー詳細" %><span>(任意)</span>
+    <%= f.text_area :detail, class: "form-control" %>
+  </div>

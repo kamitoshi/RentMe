@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <div class="worker_info-box">
-        <div class="worker_image-box center">
+      <div class="worker_info-box border">
+        <div class="worker_image-box center pa-y-20">
           <% if current_worker.image.present? %>
             <%= current_worker.image %>
           <% else %>
@@ -13,7 +13,7 @@
           <%= current_worker.kana_fullname %><br>
           <span class="font-30"><%= current_worker.fullname %></span>
         </div>
-        <div class="worker_info-box">
+        <div class="worker_info-content pa-20">
           <div class="sex">
             <p>性別：<%= current_worker.sex_i18n %></p>
           </div>
@@ -53,7 +53,7 @@
     <div class="col-8">
       <div class="all_index-box">
         <%= render "workers/new_index" %>
-        <div class="worker_menu row pa-y-50">
+        <div class="worker_menu row pa-y-30">
           <div class="link_btn col-6">
             <%= link_to "案件作成", new_suggest_path, class:"menu_btn" %>
           </div>

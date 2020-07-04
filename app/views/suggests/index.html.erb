@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <%= render "suggests/index", suggests: @suggests %>
+      <%= render partial: "suggests/index", locals:{suggests: @suggests, target_dates: @target_dates} %>
     </div>
   </div>
 </div>

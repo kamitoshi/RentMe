@@ -3,68 +3,32 @@
     <div class="col-12"> 
       <% if worker_signed_in? %>
         <div class="contract_index-worker">
-          <div class="contract_index-status0">
-            <h5>契約中の案件</h5>
-            <ul class="list-group list-group-flush">
-              <% @contracts.each do |contract| %>
-                <% if contract.status == "契約中" %>
-                  <li class="list-group-item"><%= link_to contract.employer.store_name, contract_path(contract) %></li>
-                <% end %>
-              <% end %> 
-            </ul>
+          <div class="contract_index-status half-box">
+            <h5>契約中/レビュー待ち</h5>
+            <div class="contract_index-box">
+              <%= render "contracts/index_table", contracts: @contracts %>
+            </div>
           </div>
-          <div class="contract_index-status1 pa-t-50">
-            <h5>レビュー待ちの案件</h5>
-            <ul class="list-group list-group-flush">
-              <% @contracts.each do |contract| %>
-                <% if contract.status == "レビュー待ち" %>
-                  <li class="list-group-item"><%= link_to contract.employer.store_name, contract_path(contract) %></li>
-                <% end %>
-              <% end %> 
-            </ul>
-          </div>
-          <div class="contract_index-status2 pa-t-50">
-            <h5>契約完了案件</h5>
-            <ul class="list-group list-group-flush">
-              <% @contracts.each do |contract| %>
-                <% if contract.status == "契約完了" %>
-                  <li class="list-group-item"><%= link_to contract.employer.store_name, contract_path(contract) %></li>
-                <% end %>
-              <% end %> 
-            </ul>
+          <div class="contract_index-status half-box">
+            <h5>契約完了</h5>
+            <div class="contract_index-box">
+              <%= render "contracts/index_table", contracts: @end_contracts %>
+            </div>
           </div>
         </div>
       <% elsif employer_signed_in? %>
         <div class="contract_index-employer">
-          <div class="contract_index-status0">
-            <h5>契約中の案件</h5>
-            <ul class="list-group list-group-flush">
-              <% @contracts.each do |contract| %>
-                <% if contract.status == "契約中" %>
-                  <li class="list-group-item"><%= link_to contract.worker.fullname, contract_path(contract) %></li>
-                <% end %>
-              <% end %> 
-            </ul>
+          <div class="contract_index-status half-box">
+            <h5>契約中/レビュー未済</h5>
+            <div class="contract_index-box">
+              <%= render "contracts/index_table", contracts: @contracts %>
+            </div>
           </div>
-          <div class="contract_index-status1 pa-t-50">
-            <h5>レビュー待ちの案件</h5>
-            <ul class="list-group list-group-flush">
-              <% @contracts.each do |contract| %>
-                <% if contract.status == "レビュー待ち" %>
-                  <li class="list-group-item"><%= link_to contract.worker.fullname, contract_path(contract) %></li>
-                <% end %>
-              <% end %> 
-            </ul>
-          </div>
-          <div class="contract_index-status2 pa-t-50">
-            <h5>契約完了案件</h5>
-            <ul class="list-group list-group-flush">
-              <% @contracts.each do |contract| %>
-                <% if contract.status == "契約完了" %>
-                  <li class="list-group-item"><%= link_to contract.worker.fullname, contract_path(contract) %></li>
-                <% end %>
-              <% end %> 
-            </ul>
+          <div class="contract_index-status half-box">
+            <h5>契約完了</h5>
+            <div class="contract_index-box">
+              <%= render "contracts/index_table", contracts: @end_contracts %>
+            </div>
           </div>
         </div>
       <% end %>

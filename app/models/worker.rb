@@ -52,8 +52,14 @@ class Worker < ApplicationRecord
     self.kana_last_name + "　" + self.kana_first_name
   end
 
+  # 年齢を生年月日から算出
   def age
     (Date.today.strftime("%Y%m%d").to_i - self.birthday.strftime("%Y%m%d").to_i) / 10000
+  end
+
+  # 今掲載中の案件をだす
+  def active_suggests
+    self.suggests.where(is_active: true)
   end
 
   # 評価の平均値を出すため
