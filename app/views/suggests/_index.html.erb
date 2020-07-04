@@ -1,63 +1,66 @@
-<div class="suggest_index">
-  <% if suggests.any? %>
-    <% suggests.each do |suggest| %>
-      <div class="suggest_index-item ma-20 border pa-10">
-        <div class="suggest_index-title">
-          <h4 class="dis-ib"><%= link_to suggest.title, suggest_path(suggest) %></h4>
-          <% if employer_signed_in? %>
-            <% if current_employer.holds?(suggest) %>
-              <span class="font-10 hold_badge">保留中</span>
+<% if suggests.any? %>
+  <% target_dates.each do |date| %>
+    <p class="mini-title pa-y-50"><span><%= date.strftime("%Y年%-m月%-d日") %></span></p>
+    <div class="suggest_index dis-flex-box">
+      <% suggests.where(target_date: date).each do |suggest| %>
+        <div class="suggest_index-item ma-a border pa-10" style="width:510px">
+          <div class="suggest_index-title">
+            <h4 class="dis-ib"><%= link_to suggest.title, suggest_path(suggest) %></h4>
+            <% if employer_signed_in? %>
+              <% if current_employer.holds?(suggest) %>
+                <span class="font-10 hold_badge">保留中</span>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
+          <div class="suggest_type">
+            <table class="table table-borderless table-sm">
+              <tbody>
+                <tr>
+                  <th scope="row">希望勤務日時</th>
+                  <td>
+                    <%= suggest.target_date.strftime("%-m月%-d日") %>（<%= weekday(suggest.target_date) %>）
+                    <%= suggest.opening.strftime("%H:%M") %>〜<%= suggest.closing.strftime("%H:%M") %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">希望時給</th>
+                  <td>¥<%= suggest.price.to_s(:delimited) %></td>
+                </tr>
+                <tr>
+                  <th scope="row">希望勤務地</th>
+                  <td>
+                    <% suggest.locations.each do |location| %>
+                      <span class="pa-r-20"><%= location.place %></span>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">希望業務内容</th>
+                  <td>
+                    <% suggest.types.each do |type| %>
+                      <span class="pa-r-20"><%= type.name %></span>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="wid-50 ma-l">
+            <table class="table table-borderless table-sm">
+              <tr>
+                <th>掲載者</th>
+                <td><%= link_to suggest.worker.fullname, worker_path(suggest.worker) %></td>
+              </tr>
+              <tr>
+                <th>掲載日</th>
+                <td><%= suggest.updated_at.strftime("%Y年%m月%d日") %></td>
+              </tr>
+            </table>
+          </div>
         </div>
-        <div class="suggest_type">
-          <table class="table table-borderless table-sm">
-            <tbody>
-              <tr>
-                <th scope="row" width="15%">希望勤務日時</th>
-                <td>
-                  <%= suggest.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(suggest.target_date) %>）
-                  <%= suggest.opening.strftime("%H:%M") %>〜<%= suggest.closing.strftime("%H:%M") %>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">希望時給</th>
-                <td>¥<%= suggest.price.to_s(:delimited) %></td>
-              </tr>
-              <tr>
-                <th scope="row">希望勤務地</th>
-                <td>
-                  <% suggest.locations.each do |location| %>
-                    <span class="pa-r-20"><%= location.place %></span>
-                  <% end %>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">希望業務内容</th>
-                <td>
-                  <% suggest.types.each do |type| %>
-                    <span class="pa-r-20"><%= type.name %></span>
-                  <% end %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="wid-20 ma-l">
-          <table class="table table-borderless table-sm">
-            <tr>
-              <th>掲載者</th>
-              <td><%= link_to suggest.worker.fullname, worker_path(suggest.worker) %></td>
-            </tr>
-            <tr>
-              <th>掲載日</th>
-              <td><%= suggest.updated_at.strftime("%Y年%m月%d日") %></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    <% end %>
-  <% else %>
-    <p class="center">該当の掲載がありません</p>
+      <% end %>
+    </div>
   <% end %>
-</div>
+<% else %>
+  <p class="center">該当の掲載がありません</p>
+<% end %>

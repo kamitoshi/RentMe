@@ -3,9 +3,13 @@ class ContractsController < ApplicationController
 
   def index
     if worker_signed_in?
-      @contracts = Contract.where(worker_id: current_worker.id)
+      contracts = Contract.where(worker_id: current_worker.id).order(target_date: :asc)
+      @contracts = contracts.where.not(status: "契約終了")
+      @end_contracts = contracts.where(status: "契約終了")
     elsif employer_signed_in?
       @contracts = Contract.where(employer_id: current_employer.id)
+      @contracts = contracts.where.not(status: "契約終了")
+      @end_contracts = contracts.where(status: "契約終了")
     end
   end
 

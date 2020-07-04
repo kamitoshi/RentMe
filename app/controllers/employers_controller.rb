@@ -3,8 +3,8 @@ class EmployersController < ApplicationController
   before_action :set_employer, only:[:show, :edit, :image_edit, :update, :destroy]
 
   def index
-    @offers = Offer.where(employer_id: current_employer.id, is_approval: nil)
-    contracts = Contract.where(employer_id: current_employer.id)
+    @offers = Offer.where(employer_id: current_employer.id, is_approval: nil).order(target_date: :asc)
+    contracts = Contract.where(employer_id: current_employer.id).order(target_date: :asc)
     @contracts = contracts.where(status: 0)
     @review_contracts = contracts.where(status: 1)
   end

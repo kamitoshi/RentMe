@@ -5,12 +5,7 @@
         <h3>契約内容</h3>
       </div>
       <div class="contract_confirm-box">
-        <h5 class="pa-20">委託者　　<%= @contract.employer.store_name %>（所在：<%= @contract.employer.address %>）</h5>
-        <h5 class="pa-20">受託者　　<%= @contract.worker.fullname %>（所在：<%= @contract.worker.address %>）</h5>
-        <h5 class="pa-20">時給　　　¥<%= @contract.price %></h5>
-        <h5 class="pa-20">勤務日　　<%= @contract.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(@contract.target_date) %>）</h5>
-        <h5 class="pa-20">勤務時間　<%= @contract.opening.strftime("%H:%M") %>〜<%= @contract.closing.strftime("%H:%M") %></h5>
-        <h5 class="pa-20">主な業務内容　<%= @contract.job_description %></h5>
+        <%= render "contracts/content", contract: @contract %>
       </div>
       <% if worker_signed_in? %>
         <% if current_worker == @contract.worker && @contract.status == "契約中" %>

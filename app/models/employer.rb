@@ -17,9 +17,12 @@ class Employer < ApplicationRecord
     沖縄県:47
   }
 
-  has_many :offers, dependent: :destroy
   has_many :contracts, dependent: :nullify
   has_many :reviews, dependent: :nullify
+
+  # offerを通してsuggestsを取り出す
+  has_many :offers, dependent: :destroy
+  has_many :offer_suggests, through: :offers, source: "suggest"
 
   # Holdアソシエーション 
   has_many :holds

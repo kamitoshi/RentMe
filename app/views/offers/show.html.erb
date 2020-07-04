@@ -6,9 +6,9 @@
     <div class="col-6">
       <div class="offer_message">
         <% if worker_signed_in? %>
-          <p class="center pa-30">この案件に対して、下記内容でオファーがきています</p>
+          <p class="center pa-30">下記内容でオファーがきています</p>
         <% elsif employer_signed_in? %>
-          <p class="center pa-30">この案件に対して、下記内容でオファーしています</p>
+          <p class="center pa-30">下記内容でオファーしています</p>
         <% end %>
       </div>
 
@@ -33,11 +33,11 @@
               <%= link_to "削除する", offer_path(@offer), method: :delete, data:{confirm:"本当に削除してよろしいですか？"}, class:"btn btn-danger" %>
             <% end %>
           </div>
-          <div class="link-btn ma-t-50">
-            <%= link_to "マイページへ戻る", employers_path, class:"btn btn-primary" %>
-          </div>
         <% end %>
       </div>
+    </div>
+    <div class="link-btn ma-t-50">
+      <%= link_to "マイページへ戻る", employers_path, class:"btn btn-primary" %>
     </div>
   </div>
 </div>

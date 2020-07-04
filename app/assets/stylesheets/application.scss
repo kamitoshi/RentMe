@@ -19,6 +19,9 @@
 textarea {
   resize: none;
 }
+p {
+  margin: 0;
+}
 
 .field {
   padding: 25px;
@@ -36,6 +39,12 @@ textarea {
 
 .index-box {
   height: 300px;
+}
+.review_index-box {
+  height: 200px;
+}
+.half-box {
+  height: 40vh;
 }
 .new_offer-box,
 .new_review-box {

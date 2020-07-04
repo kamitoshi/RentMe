@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <div class="employer_info-box">
+      <div class="employer_info-box border">
         <div class="employer_image-box center">
           <% if current_employer.image.present? %>
             <%= current_employer.image %>
@@ -9,11 +9,11 @@
             <%= image_tag "store-no-image.png", size: "300x250" %>
           <% end %>
         </div>
-        <div class="employer_name-box pa-b-50">
+        <div class="employer_name-box pa-b-30 center">
           <%= current_employer.kana_store_name %><br>
           <span class="font-30"><%= current_employer.store_name %></span>
         </div>
-        <div class="employer_info-box">
+        <div class="employer_info-content pa-20">
           <div class="address">
             <p>
               〒<%= current_employer.postal_code %><br>
@@ -40,7 +40,8 @@
     </div>
     <div class="col-8">
       <div class="all_index-box">
-        <div class="worker_menu row pa-y-50">
+        <%= render "employers/reviews_index" %>
+        <div class="worker_menu row pa-y-30">
           <div class="link_btn col-6">
             <%= link_to "掲載案件一覧", suggests_path, class: "menu_btn" %>
           </div>
@@ -56,7 +57,6 @@
         </div>
         <%= render "employers/offers_index" %>
         <%= render "employers/contracts_index" %>
-        <%= render "employers/reviews_index" %>
       </div>
     </div>
   </div>

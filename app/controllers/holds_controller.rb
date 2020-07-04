@@ -2,7 +2,8 @@ class HoldsController < ApplicationController
   before_action :only_employer!
 
   def index
-    @suggests = current_employer.hold_suggests
+    @suggests = current_employer.hold_suggests.order(target_date: :asc)
+    @target_dates = @suggests.group(:target_date).map{|date| date.target_date}
   end
   
   def create

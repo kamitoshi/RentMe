@@ -1,22 +1,22 @@
 <div class="container">
   <div class="row">
-    <div class="col-8 offset-2">
+    <div class="col-12">
+      <h2 class="title">評価</h2>
       <div class="review_title">
-        <h2 class="title">評価</h2>
-      </div>
-      <div class="review_title-content">
         <p>
           働いてくれたワーカーを評価しましょう。<br>
           評価を送信すると契約が終了し、ワーカーに賃金が支払われます。<br>
-          細かい評価やワーカーに伝えたいことがある場合は、記入してください。<br>
+          細かい評価やワーカーに伝えたいことがある場合は、記入してください。
         </p>
       </div>
-      <div class="like_content-box">
+      <div class="like_content-box pa-t-20">
         <div class="like_content-message">
-          今回働いてくれたワーカーが良かったと思ったらお気に入りしてみましょう。<br>
-          お気に入りしたワーカーが案件を掲載すると、通知が来るようになります。
+          <p>
+            今回働いてくれたワーカーが良かったと思ったらお気に入りしてみましょう。<br>
+            お気に入りしたワーカーが案件を掲載すると、通知が来るようになります。
+          </p>
         </div>
-        <div id="like_toggle">
+        <div id="like_toggle" class="pa-20">
           <% if @contract.employer.liked?(@contract.worker) %>
             <%= render "likes/liked" %>
           <% else %>
@@ -24,52 +24,58 @@
           <% end %>
         </div>
       </div>
-      <div class="review_form-box pa-t-50">
+    </div>
+  </div>
+  <div class="row pa-t-50">
+    <div class="col-6 border-r">
+      <div class="offer_info-box">
+        <table class="table table-borderless table-sm">
+          <tbody>
+            <tr>
+              <th scope="row"><h3>評価対象者</h3></th>
+              <td><span class="font-25"><%= link_to @contract.worker.fullname, worker_path(@contract.worker) %></span></td>
+            </tr>
+            <tr><td>　</td></tr>
+            <tr>
+              <th scope="row" colspan="2" class="center"><h4>契約内容</h4></th>
+            </tr>
+            <tr><td>　</td></tr>
+            <tr>
+              <th scope="row"><h4>勤務日</h4></th>
+              <td><span class="font-20"><%= @contract.target_date.strftime("%Y年%m月%d日") %>（<%= weekday(@contract.target_date) %>）</span></td>
+            </tr>
+            <tr>
+              <th scope="row"><h4>勤務時間</h4></th>
+              <td><span class="font-20"><%= @contract.opening.strftime("%H:%M") %>〜<%= @contract.closing.strftime("%H:%M") %></span></td>
+            </tr>
+            <tr>
+              <th scope="row"><h4>時給</h4></th>
+              <td><span class="font-20">¥<%= @contract.price.to_s(:delimited) %></span></td>
+            </tr>
+            <tr>
+              <th scope="row"><h4>主な業務内容</h4></th>
+              <td><span class="font-20"><%= @contract.job_description %></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="review_form-box">
         <%= form_for @review, url: contract_reviews_path(params[:contract_id]), method: :post do |f| %>
           <%= f.hidden_field :worker_id, value: @contract.worker.id %>
           <%= f.hidden_field :contract_id, value: @contract.id %>
-          <div class="form-group" id="service_star">
-            <%= f.label :service_rate, "接客" %><span>（接客態度やお客様からの評価）</span><br>
-            <%= f.hidden_field :service_rate, id: :review_star %>
+          <%= render "reviews/form", f: f %>
+          <div class="review_btn right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">レビューを送信する</button>
           </div>
-
-          <div class="form-group" id="skill_star">
-            <%= f.label :skill_rate, "スキル" %><span>（調理スキルや接客スキル）</span><br>
-            <%= f.hidden_field :skill_rate, id: :review_star %>
-          </div>
-
-          <div class="form-group" id="voice_star">
-            <%= f.label :voice_rate, "声の大きさ" %><span>（お店の雰囲気に合った声の大きさ）</span><br>
-            <%= f.hidden_field :voice_rate, id: :review_star %>
-          </div>
-
-          <div class="form-group" id="earnest_star">
-            <%= f.label :earnest_rate, "真面目さ" %><span>（仕事に対する真面目さ）</span><br>
-            <%= f.hidden_field :earnest_rate, id: :review_star %>
-          </div>
-
-          <div class="form-group" id="smile_star">
-            <%= f.label :smile_rate, "笑顔" %><span>（愛嬌があるか）</span><br>
-            <%= f.hidden_field :smile_rate, id: :review_star %>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :detail, "レビュー詳細" %><span>(任意)</span>
-            <%= f.text_area :detail, class: "form-control" %>
-          </div>
-
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
-            レビューを送信する
-          </button>
-
           <%= render "reviews/review_modal", f:f %>
-
-        <% end %>
-
+        <% end %> 
       </div>
     </div>
   </div>
 </div>
+
 <script>
   $("#service_star").raty({
     size: 36,
