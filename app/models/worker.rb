@@ -28,6 +28,8 @@ class Worker < ApplicationRecord
   # Likeアソシエーション(現時点でワーカーからはlikeしない)
   has_many :likes, dependent: :destroy
 
+  mount_uploader :image, WorkerUploader
+
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :kana_last_name, presence: true

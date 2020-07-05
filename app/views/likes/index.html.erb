@@ -7,11 +7,11 @@
             <div class="card mb-3" style="width: 540px;">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <div class="worker_image-box center pa-y-20">
+                  <div class="worker_image-box center pa-y-10">
                     <% if like.worker.image.present? %>
-                      <%= like.worker.image %>
+                      <%= image_tag like.worker.image.sumnail.to_s %>
                     <% else %>
-                      <%= image_tag "no_image.png", size: "120x150" %>
+                      <%= image_tag "no_image.png", size: "125x150" %>
                     <% end %>
                   </div>
                 </div>

@@ -4,9 +4,9 @@
       <div class="employer_info-box border">
         <div class="employer_image-box center">
           <% if current_employer.image.present? %>
-            <%= current_employer.image %>
+            <%= image_tag current_employer.image.thumb.to_s, class:"wid-100" %>
           <% else %>
-            <%= image_tag "store-no-image.png", size: "300x250" %>
+            <%= image_tag "store-no-image.png", size: "350x250" %>
           <% end %>
         </div>
         <div class="employer_name-box pa-b-30 center">
@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="link_btn">
-          <%= link_to "店舗情報編集", edit_employer_path(current_employer), class:"page-link text-dark d-inline-block" %>
+          <%= link_to "店舗情報詳細/編集", employer_path(current_employer), class:"page-link text-dark d-inline-block" %>
         </div>
       </div>
       <div class="employer_menu-box">

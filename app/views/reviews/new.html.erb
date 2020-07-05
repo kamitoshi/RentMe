@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="col-6">
-      <div class="review_form-box">
+      <div class="review_form-box pa-10">
         <%= form_for @review, url: contract_reviews_path(params[:contract_id]), method: :post do |f| %>
           <%= f.hidden_field :worker_id, value: @contract.worker.id %>
           <%= f.hidden_field :contract_id, value: @contract.id %>

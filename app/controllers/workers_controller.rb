@@ -68,7 +68,7 @@ class WorkersController < ApplicationController
 
   private
   def worker_params
-    params.require(:worker).permit(:last_name, :first_name, :kana_last_name, :kana_first_name, :sex, :birthday, :phone_number, :prefecture, :city, :street, :building, :email, :introduction, :image)
+    params.require(:worker).permit(:last_name, :first_name, :kana_last_name, :kana_first_name, :sex, :birthday, :phone_number, :postal_code, :prefecture, :city, :street, :building, :email, :introduction, :image)
   end
 
   def set_worker
