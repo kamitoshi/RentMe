@@ -5,9 +5,9 @@
         <div class="col-4">
           <div class="worker_image-box center">
             <% if @worker.image.present? %>
-              <%= @worker.image %>
+              <%= image_tag @worker.image.info.to_s %>
             <% else %>
-              <%= image_tag "no_image.png", size: "200x250" %>
+              <%= image_tag "no_image.png", size: "250x300" %>
             <% end %>
           </div>
           <% if worker_signed_in? %>

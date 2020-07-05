@@ -4,14 +4,14 @@
       <div class="employer_box">
         <div class="employer_image-box center">
           <% if @employer.image.present? %>
-            <%= @employer.image %>
+            <%= image_tag @employer.image.thumb.to_s %>
           <% else %>
-            <%= image_tag "store-no-image.png", size:"600x400" %>
+            <%= image_tag "store-no-image.png", size: "350x250" %>
           <% end %>
         </div>
         <% if employer_signed_in? %>
-          <div class="employer_image-edit right">
-            <%= link_to "店舗画像変更", image_edit_employer_path(@employer) %>
+          <div class="employer_edit wid-40 ma-l pa-t-30">
+            <%= link_to "店舗情報を編集する", edit_employer_path(current_employer), class:"btn btn-outline-primary wid-100" %>
           </div>
         <% end %>
         <div class="employer_info-box">

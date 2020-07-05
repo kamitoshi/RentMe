@@ -4,12 +4,12 @@
       <div class="worker_info-box border">
         <div class="worker_image-box center pa-y-20">
           <% if current_worker.image.present? %>
-            <%= current_worker.image %>
+            <%= image_tag current_worker.image.info.to_s %>
           <% else %>
-            <%= image_tag "no_image.png", size: "200x250" %>
+            <%= image_tag "no_image.png", size: "250x300" %>
           <% end %>
         </div>
-        <div class="worker_name-box center pa-y-30">
+        <div class="worker_name-box center pa-b-30">
           <%= current_worker.kana_fullname %><br>
           <span class="font-30"><%= current_worker.fullname %></span>
         </div>

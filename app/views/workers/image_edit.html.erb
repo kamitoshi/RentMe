@@ -4,9 +4,20 @@
       <div class="image-form">
         <%= form_for @worker do |f| %>
           <div class="worker_image-box ma-y-50">
-            <%= image_tag "no_image.png", size: "280x400" %>
+            <% if @worker.image.present? %>
+              <%= image_tag @worker.image.info.to_s %>
+            <% else %>
+              <%= image_tag "no_image.png", size: "250x300" %>
+            <% end %>
           </div>
           <%= f.file_field :image %>
+          <div class="image-form-introduction ma-t-50 left">
+            <h3 style="color:red">注意</h3>
+            <p>
+              登録された写真は、お店の方が見ます。<br>
+              なるべくアプリのフィルターなどがかかっていないもので、顔がちゃんと分かるものにしてください。
+            </p>
+          </div>
 
           <div class="actions ma-t-50">
             <%= f.submit "プロフィール画像を変更する" %>
@@ -15,13 +26,6 @@
         <div class="back_link ma-y-30 right">
           <%= link_to "戻る", :back %>
         </div>
-      </div>
-      <div class="image-form-introduction ma-t-50 left">
-        <h3 style="color:red">注意</h3>
-        <p>
-          登録された写真は、お店の方が見ます。<br>
-          なるべくアプリのフィルターなどがかかっていないもので、顔がちゃんと分かるものにしてください。
-        </p>
       </div>
     </div>
   </div>

@@ -32,6 +32,8 @@ class Employer < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :like_workers, through: :workers, source: "worker"
 
+  mount_uploader :image, EmployerUploader
+
   validates :store_name, presence: true
   validates :kana_store_name, presence: true
   validates :phone_number, presence: true
