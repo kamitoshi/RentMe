@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_091645) do
+ActiveRecord::Schema.define(version: 2020_07_06_115211) do
 
   create_table "banks", force: :cascade do |t|
     t.integer "worker_id"
@@ -112,6 +112,15 @@ ActiveRecord::Schema.define(version: 2020_07_06_091645) do
     t.index ["worker_id"], name: "index_locations_on_worker_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "room_id"
+    t.text "content"
+    t.integer "user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
   create_table "offers", force: :cascade do |t|
     t.integer "suggest_id"
     t.integer "employer_id"
@@ -145,6 +154,15 @@ ActiveRecord::Schema.define(version: 2020_07_06_091645) do
     t.index ["contract_id"], name: "index_reviews_on_contract_id"
     t.index ["employer_id"], name: "index_reviews_on_employer_id"
     t.index ["worker_id"], name: "index_reviews_on_worker_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "worker_id"
+    t.integer "employer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employer_id"], name: "index_rooms_on_employer_id"
+    t.index ["worker_id"], name: "index_rooms_on_worker_id"
   end
 
   create_table "suggest_locations", force: :cascade do |t|
