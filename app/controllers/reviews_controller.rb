@@ -17,6 +17,11 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    if @review.worker == current_worker
+      unless @review.is_read?
+        @review.update(is_read: true)
+      end
+    end
   end
 
   def new

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_025209) do
+ActiveRecord::Schema.define(version: 2020_07_06_091645) do
 
   create_table "banks", force: :cascade do |t|
     t.integer "worker_id"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 2020_07_02_025209) do
     t.text "detail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_read", default: false
     t.index ["contract_id"], name: "index_reviews_on_contract_id"
     t.index ["employer_id"], name: "index_reviews_on_employer_id"
     t.index ["worker_id"], name: "index_reviews_on_worker_id"
