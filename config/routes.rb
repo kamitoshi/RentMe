@@ -57,5 +57,7 @@ Rails.application.routes.draw do
   resources :reviews, only:[:index, :show]
   resources :incumbents, only:[:new, :create, :edit, :update, :destroy]
   resources :banks, only:[:index, :create, :edit, :update, :destroy]
+  resources :rooms, only:[:index, :show, :create, :destroy]
+  resources :messages, only:[:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
