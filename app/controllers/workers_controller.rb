@@ -17,7 +17,7 @@ class WorkersController < ApplicationController
         end
       end
     end
-    @reviews = Review.where(worker_id: current_worker.id).order(target_date: :asc)
+    @reviews = Review.where(worker_id: current_worker.id, is_read: false).order(target_date: :asc)
     contracts = Contract.where(worker_id: current_worker.id).order(target_date: :asc)
     @contracts = contracts.where(status: 0)
     @review_contracts = contracts.where(status: 1)
