@@ -19,6 +19,7 @@ class Employer < ApplicationRecord
 
   has_many :contracts, dependent: :nullify
   has_many :reviews, dependent: :nullify
+  has_many :rooms, dependent: :nullify
 
   # offerを通してsuggestsを取り出す
   has_many :offers, dependent: :destroy
