@@ -12,15 +12,19 @@
       <h4 class="header"><%= render "messages/name", room: @room %></h4>
     </div>
     <div class="message_main-box" id="message_index">
-      <% if @room.messages.any? %>
-        <%= render "messages/message", message: @room.messages %>
-      <% else %>
-        <p class="center">
-          契約が成立しました。<br>
-          連絡を送ってみましょう。
-        </p>
-      <% end %>
-      <%= render "messages/form" %>
+      <div class="message_content-box pa-x-50">
+        <% if @room.messages.any? %>
+          <%= render partial: "messages/message", locals:{messages: @room.messages, room: @room} %>
+        <% else %>
+          <p class="center">
+            契約が成立し、メッサージを送ることができます。<br>
+            連絡を送ってみましょう。
+          </p>
+        <% end %>
+      </div>
+      <div class="message_form-box">
+        <%= render "messages/form" %>
+      </div>
     </div>
   </div>
 </div>

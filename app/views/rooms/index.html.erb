@@ -12,8 +12,12 @@
       <h4 class="header">チャットルームを選択してください</h4>
     </div>
     <div class="message_main-box" id="message_index">
-      <p>チャットルームを選択してください</p>
-      <%= render "messages/form" %>
+      <div class="message_content-box">
+        <p>チャットルームを選択してください</p>
+      </div>
+      <div class="message_form-box">
+        <%= render "messages/form" %>
+      </div>
     </div>
   </div>
 </div>

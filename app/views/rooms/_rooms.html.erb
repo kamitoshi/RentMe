@@ -1,29 +1,17 @@
 <div class="main">
   <% if rooms.any? %>
     <% rooms.each do |room| %>
-      <div class="row">
-        <div class="main-index">
-          <div class="col-4">
-            <div class="room_user-image">
-              <%= image_tag "no-image.png", size: "50x50" %>
-            </div>
-          </div>
-          <div class="col-8">
-            <div class="user-info">
-              <div class="user-name">
-                <% if worker_signed_in? %>
-                  <%= room.employer.store_name %>
-                <% elsif employer_signed_in? %>
-                  <%= room.worker.fullname %>
-                <% end %>
-              </div>
-              <hr>
-              <div class="room_user-message">
-                <% if room.messages.any? %>
-                  <%= room.messages[0].content.truncate(15) %>
-                <% end %>
-              </div>
-            </div>
+      <div class="main-index">
+        <div class="room_user-image dis-ib pa-5">
+          <%= image_tag "no_image.png", size: "50x50" %>
+        </div>
+        <div class="user-info dis-ib">
+          <div class="user-name">
+            <% if worker_signed_in? %>
+              <%= link_to room.employer.store_name, room_path(room) %>
+            <% elsif employer_signed_in? %>
+              <%= link_to room.worker.fullname, room_path(room) %>
+            <% end %>
           </div>
         </div>
       </div>
