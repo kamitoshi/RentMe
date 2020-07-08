@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
 
   def create
-    @room = Room.find(params[:id])
+    @room = Room.find(params[:room_id])
     @message = @room.messages.build(message_params)
     if worker_signed_in?
       @message.user = "worker"
@@ -12,9 +12,7 @@ class MessagesController < ApplicationController
       end
     elsif employer_signed_in?
       @message.user = "employer"
-      byebug
       if @message.save
-        byebug
         render :send
       else
         redirect_back(fallback_location: root_path)
