@@ -1,0 +1,35 @@
+<div id="scroll-inner">
+  <% if worker_signed_in? %>
+    <% messages.each do |message| %>
+      <% if message.user == "worker" %>
+        <p class="myMessage">
+          <span class="font-10">@<%= room.worker.fullname %></span><br>
+          <span class="my-message"><%= message.content %></span><br>
+          <span class="font-10"><%= message.created_at.strftime("%Y/%m/%d  %H:%M") %></span>
+        </p>
+      <% elsif message.user == "employer" %>
+        <p class="otherMessage">
+          <span class="font-10">@<%= room.employer.store_name %></span><br>
+          <span class="other-message"><%= message.content %></span><br>
+          <span class="font-10"><%= message.created_at.strftime("%Y/%m/%d  %H:%M") %></span>
+        </p>
+      <% end %>
+    <% end %>
+  <% elsif %>
+    <% messages.each do |message| %>
+      <% if message.user == "employer" %>
+        <p class="myMessage">
+          <span class="font-10">@<%= room.employer.store_name %></span><br>
+          <span class="my-message"><%= message.content %></span><br>
+          <span class="font-10"><%= message.created_at.strftime("%Y/%m/%d  %H:%M") %></span>
+        </p>
+      <% elsif message.user == "worker" %>
+        <p class="otherMessage">
+          <span class="font-10">@<%= room.worker.fullname %></span><br>
+          <span class="other-message"><%= message.content %></span><br>
+          <span class="font-10"><%= message.created_at.strftime("%Y/%m/%d  %H:%M") %></span>
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -24,6 +24,7 @@ class Worker < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :incumbents, dependent: :destroy
   has_many :banks, dependent: :destroy
+  has_many :rooms, dependent: :nullify
 
   # Likeアソシエーション(現時点でワーカーからはlikeしない)
   has_many :likes, dependent: :destroy

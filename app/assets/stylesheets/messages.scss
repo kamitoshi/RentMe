@@ -1,0 +1,28 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.myMessage {
+  text-align: right;
+  padding-left: 100px;
+}
+
+.otherMessage {
+  padding-right: 100px;
+}
+
+.my-message {
+  background-color: #007bff;
+  opacity: 0.9;
+  color: white;
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 15px;
+  text-align: left;
+}
+
+.other-message {
+  border: solid 1px rgb(213, 212, 212);
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 15px;
+}

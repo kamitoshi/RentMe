@@ -28,6 +28,7 @@ class ContractsController < ApplicationController
     if @offer.suggest.worker == current_worker
       @contract.employer_id = @offer.employer_id
       if @contract.save
+        Room.create(worker_id: @contract.worker.id, employer_id: @contract.employer.id)
         flash[:success] = "契約が完了しました。採用者からの連絡をお待ちください。"
         redirect_to workers_path
       else

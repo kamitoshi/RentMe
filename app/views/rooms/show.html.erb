@@ -1,0 +1,30 @@
+<div class="contain">
+  <div class="left-box">
+    <div class="room_header-box">
+      <h3 class="header">メッセージ</h3>
+    </div>
+    <div class="room_main-box">
+      <%= render "rooms/rooms", rooms: @rooms %>
+    </div>
+  </div>
+  <div class="right-box">
+    <div class="message_header-box" id="message_title">
+      <h4 class="header"><%= render "messages/name", room: @room %></h4>
+    </div>
+    <div class="message_main-box">
+      <div class="message_content-box pa-x-50 scroll-box" id="message_index">
+        <% if @room.messages.any? %>
+          <%= render partial: "messages/message", locals:{messages: @room.messages, room: @room} %>
+        <% else %>
+          <p class="center">
+            契約が成立し、メッサージを送ることができます。<br>
+            連絡を送ってみましょう。
+          </p>
+        <% end %>
+      </div>
+      <div class="message_form-box">
+        <%= render "messages/form", room: @room %>
+      </div>
+    </div>
+  </div>
+</div>

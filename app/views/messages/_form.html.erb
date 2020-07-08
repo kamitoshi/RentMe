@@ -1,0 +1,12 @@
+<%= form_for @message, url: room_messages_path(room.id), remote: true do |f| %>
+  <div class="message_text-box">
+    <div class="row">
+      <div class="col-10">
+       <%= f.text_area :content, class:"message-form form-control", style: "height: 137px;" %>
+      </div>
+      <div class="col-2">
+        <%= f.submit "送信", class: "btn btn-primary send-btn", id: "send-btn" %>
+      </div>
+    </div>
+  </div>
+<% end %>
