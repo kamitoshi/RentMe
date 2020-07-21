@@ -16,7 +16,7 @@
         <p>チャットルームを選択してください</p>
       </div>
       <div class="message_form-box">
-        <%= render "messages/form" %>
+        <%= render "messages/form", room: @rooms[0] %>
       </div>
     </div>
   </div>
